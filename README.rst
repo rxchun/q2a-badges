@@ -12,6 +12,13 @@ Extended version changelog:
 - Added supported styles for Right-To-Left Themes.
 - Fixed badges not appearing next to the User on question lists and next to the Loggedin text on the navigation bar.
 
+Screenshots
+
+- Badges page: https://goo.gl/Zmn89g
+- Badges on rofile page: https://goo.gl/X9pzw5
+- Badges on rofile page (Right-To-Left): https://goo.gl/dn1KwX
+- Badges on rofile page (Mobile) : https://goo.gl/hbpS5E
+
 -----------
 Description
 -----------

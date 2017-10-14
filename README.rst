@@ -1,6 +1,17 @@
 ==============================
 Question2Answer Badges
 ==============================
+
+-----------
+Extended version changelog:
+-----------
+
+- Badges styles fully redesigned.
+- Mobile ready styles.
+- Added algorithm to group Badges by "topics" on Badges page.
+- Added supported styles for Right-To-Left Themes.
+- Fixed badges not appearing next to the User on question lists and next to the Loggedin text on the navigation bar.
+
 -----------
 Description
 -----------

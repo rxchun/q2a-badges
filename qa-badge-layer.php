@@ -118,19 +118,29 @@
 		}
 		
 	// theme replacement functions
-
+	
 		function head_custom() {
 			qa_html_theme_base::head_custom();
+			
 			if(!qa_opt('badge_active'))
 				return;
 
+			// only load Styles if enabled
+			if (qa_opt('badge_active')) {
+				$this->output('<link rel="stylesheet" type="text/css" href="'.QA_HTML_THEME_LAYER_URLTOROOT.'badges-style.css">');
+			}
+			// add RTL CSS file
+			if ($this->isRTL) {
+				$this->output('<link rel="stylesheet" type="text/css" href="'.QA_HTML_THEME_LAYER_URLTOROOT.'badges-rtl-style.css">');
+			}
+			
 			if (qa_opt('badge_active') && $this->template != 'admin')
 				$this->badge_notify();
 
 			if ($this->request == 'admin/plugins' && qa_get_logged_in_level() >= QA_USER_LEVEL_ADMIN) {
 				$this->output("
 				<script>".(qa_opt('badge_notify_time') != '0'?"
-					jQuery('document').ready(function() { jQuery('.notify-container').delay(".((int)qa_opt('badge_notify_time')*1000).").slideUp('fast'); });":"")."
+					jQuery('document').ready(function() { jQuery('.notify-container').delay(".((int)qa_opt('badge_notify_time')*1000).").fadeOut('fast'); });":"")."
 					function badgeEdit(slug,end) {
 						if(end) {
 							jQuery('#badge_'+slug+'_edit').hide();
@@ -147,7 +157,7 @@
 			else if (isset($this->badge_notice)) {
 				$this->output("
 				<script>".(qa_opt('badge_notify_time') != '0'?"
-					jQuery('document').ready(function() { jQuery('.notify-container').delay(".((int)qa_opt('badge_notify_time')*1000).").slideUp('fast'); });":"")."
+					jQuery('document').ready(function() { jQuery('.notify-container').delay(".((int)qa_opt('badge_notify_time')*1000).").fadeOut('fast'); });":"")."
 				</script>");
 			}
 			$this->output('<style>',qa_opt('badges_css'),'</style>');
@@ -167,7 +177,8 @@
 			if (qa_opt('badge_active')) {
 				if(isset($this->content['test-notify'])) {
 					$this->trigger_notify('Badge Tester');
-				 }
+				}
+				
 			}
 		}
 
@@ -182,15 +193,21 @@
 					$content['form-badges-list'] = qa_badge_plugin_user_form($userid);
 			}
 
-			qa_html_theme_base::main_parts($content);
+			if (qa_opt('badge_active') && $this->template == 'user' && qa_opt('badge_admin_user_field') && (qa_get('tab')=='badges' || qa_opt('badge_admin_user_field_no_tab')) && isset($content['raw']['userid'])) { 
+				$this->output('<div class="badges-tabs-content">');
+					qa_html_theme_base::main_parts($content);
+				$this->output('</div>');
+			} else {
+				qa_html_theme_base::main_parts($content);
+			}
 
 		}
 
 		function post_meta_who($post, $class)
 		{
 			if (@$post['who'] && @$post['who']['data'] && qa_opt('badge_active') && (bool)qa_opt('badge_admin_user_widget') && ($class != 'qa-q-item' || qa_opt('badge_admin_user_widget_q_item')) ) {
-				$handle = preg_replace('|.+qa-user-link" title="@([^"]+)".+|','$1',$post['who']['data']);
-				$post['who']['suffix'] = (@$post['who']['suffix']).'&nbsp;'.qa_badge_plugin_user_widget($handle);
+				$handle = preg_replace('/ *<[^>]+> */', '',$post['who']['data']);
+				$post['who']['suffix'] = (@$post['who']['suffix']).' '.qa_badge_plugin_user_widget($handle);
 			}
 			
 			qa_html_theme_base::post_meta_who($post, $class);
@@ -199,9 +216,10 @@
 		function logged_in()
 		{
 			if (qa_opt('badge_active') && (bool)qa_opt('badge_admin_loggedin_widget') && @$this->content['loggedin']['data'] != null) {
-				$handle = preg_replace('|.+qa-user-link" title="@([^"]+)".+|','$1',$this->content['loggedin']['data']);
-				$this->content['loggedin']['data'] = $this->content['loggedin']['data'].'&nbsp;'.qa_badge_plugin_user_widget($handle);
+				$handle = preg_replace('/ *<[^>]+> */', '',$this->content['loggedin']['data']);
+				$this->content['loggedin']['data'] = $this->content['loggedin']['data'].' '.qa_badge_plugin_user_widget($handle);
 			}
+			
 			qa_html_theme_base::logged_in();
 		}
 		
@@ -298,7 +316,7 @@
 					if(!qa_opt('badge_'.$slug.'_name')) qa_opt('badge_'.$slug.'_name',$badge_name);
 					$name = qa_opt('badge_'.$slug.'_name');
 					
-					$notice .= '<div class="badge-notify notify">'.qa_lang('badges/badge_notify')."'".$name.'\'&nbsp;&nbsp;'.qa_lang('badges/badge_notify_profile_pre').'<a href="'.qa_path_html((QA_FINAL_EXTERNAL_USERS?qa_path_to_root():'').'user/'.qa_get_logged_in_handle(),array('tab'=>'badges'),qa_opt('site_url')).'">'.qa_lang('badges/badge_notify_profile').'</a><div class="notify-close" onclick="jQuery(this).parent().slideUp(\'slow\')">x</div></div>';
+					$notice .= '<div class="badge-notify notify">'.qa_lang('badges/badge_notify')."'".$name.'\'<span class="badge-profile-check">'.qa_lang('badges/badge_notify_profile_pre').'<a href="'.qa_path_html((QA_FINAL_EXTERNAL_USERS?qa_path_to_root():'').'user/'.qa_get_logged_in_handle(),array('tab'=>'badges'),qa_opt('site_url')).'">'.qa_lang('badges/badge_notify_profile').'</a></span><div class="notify-close" onclick="jQuery(this).parent().fadeOut()">&#10006;</div></div>';
 				}
 				else {
 					$number_text = count($result)>2?str_replace('#', count($result)-1, qa_lang('badges/badge_notify_multi_plural')):qa_lang('badges/badge_notify_multi_singular');
@@ -306,7 +324,7 @@
 					$badge_name=qa_lang('badges/'.$slug);
 					if(!qa_opt('badge_'.$slug.'_name')) qa_opt('badge_'.$slug.'_name',$badge_name);
 					$name = qa_opt('badge_'.$slug.'_name');
-					$notice .= '<div class="badge-notify notify">'.qa_lang('badges/badge_notify')."'".$name.'\'&nbsp;'.$number_text.'&nbsp;&nbsp;'.qa_lang('badges/badge_notify_profile_pre').'<a href="'.qa_path_html('user/'.qa_get_logged_in_handle(),array('tab'=>'badges'),qa_opt('site_url')).'">'.qa_lang('badges/badge_notify_profile').'</a><div class="notify-close" onclick="jQuery(this).parent().slideUp(\'slow\')">x</div></div>';
+					$notice .= '<div class="badge-notify notify">'.qa_lang('badges/badge_notify')."'".$name.'\'&nbsp;'.$number_text.'<span class="badge-profile-check">'.qa_lang('badges/badge_notify_profile_pre').'<a href="'.qa_path_html('user/'.qa_get_logged_in_handle(),array('tab'=>'badges'),qa_opt('site_url')).'">'.qa_lang('badges/badge_notify_profile').'</a></span><div class="notify-close" onclick="jQuery(this).parent().fadeOut()">&#10006;</div></div>';
 				}
 
 				$notice .= '</div>';
@@ -324,7 +342,7 @@
 	// etc
 		
 		function trigger_notify($message) {
-			$notice = '<div class="notify-container"><div class="badge-notify notify">'.qa_lang('badges/badge_notify')."'".$message.'\'!&nbsp;&nbsp;'.qa_lang('badges/badge_notify_profile_pre').'<a href="/user/'.qa_get_logged_in_handle().'">'.qa_lang('badges/badge_notify_profile').'</a><div class="notify-close" onclick="jQuery(this).parent().parent().slideUp()">x</div></div></div>';
+			$notice = '<div class="notify-container"><div class="badge-notify notify">'.qa_lang('badges/badge_notify')."'".$message.'\'!<span class="badge-profile-check">'.qa_lang('badges/badge_notify_profile_pre').'<a href="/user/'.qa_get_logged_in_handle().'">'.qa_lang('badges/badge_notify_profile').'</a></span><div class="notify-close" onclick="jQuery(this).parent().parent().fadeOut()">&#10006;</div></div></div>';
 			$this->output($notice);
 		}
 		

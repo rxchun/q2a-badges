@@ -183,13 +183,13 @@
 		
 		'badge_admin'=>'Badge Admin',
 		'badges'=>'Badges',
-		'badge_list_title'=>'Badge List',
+		'badge_list_title'=>'Badges List',
 		
 		'badge_count_click'=>'Click to see source(s)',
 		
 		'badge_list_pre'=>'The following is a list of all badges available on this site:',
 		'awarded'=>'awarded',
-		'awarded_total'=>'awarded in total',
+		'awarded_total'=>'awarded to the community',
 		'badges_total'=>'total badges',
 		
 		'badge_notify'=>'Congratulations!  You\'ve earned a badge ',

@@ -41,7 +41,7 @@
 			$totalawarded = 0;
 			
 			$qa_content['custom']='<em>'.qa_lang('badges/badge_list_pre').'</em><br />';
-			$qa_content['custom2']='<table cellspacing="20">';
+			$qa_content['custom2']='<div class="page-badges-wrapper">';
 			$c = 2;
 			
 			$result = qa_db_read_all_assoc(
@@ -70,9 +70,9 @@
 				$var = qa_opt('badge_'.$slug.'_var');
 				$desc = qa_badge_desc_replace($slug,$var,false);
 				$type = qa_get_badge_type($info['type']);
-				$types = $type['slug']; 
-				$typen = $type['name']; 
-				$qa_content['custom'.++$c]='<tr><td class="badge-entry"><div class="badge-entry-badge"><span class="badge-'.$types.'" title="'.$typen.'">'.$name.'</span>&nbsp;<span class="badge-entry-desc">'.$desc.'</span>'.(isset($count[$slug])?'&nbsp;<span title="'.$count[$slug]['count'].' '.qa_lang('badges/awarded').'" class="badge-count-link" onclick="jQuery(\'#badge-users-'.$slug.'\').slideToggle()">x'.$count[$slug]['count'].'</span>':'').'</div>';
+				$types = $type['slug'];
+				$typen = $type['name'];
+				$qa_content['custom'.++$c]='<table class="badge-entry entry-'.$types.'"><tr class="badge-entry-badge"><td><span class="badge-'.$types.'" title="'.$typen.'">'.$name.'</span></td> <td><span class="badge-entry-desc">'.$desc.'</span></td>'.(isset($count[$slug])?' <td><span title="'.$count[$slug]['count'].' '.qa_lang('badges/awarded').'" class="badge-count-link" onclick="jQuery(\'#badge-users-'.$slug.'\').slideToggle()">x'.$count[$slug]['count'].'</span></td>':'<td><span class="badge-count">0</span></td>').'</tr>';
 				
 				// source users
 
@@ -103,11 +103,25 @@
 					}
 					$qa_content['custom'.$c] .= implode(', ',$users).'</div>';
 				}
-				$qa_content['custom'.$c] .= '</td></tr>';
+				$qa_content['custom'.$c] .= '</table>';
 			}
 			
 			
-			$qa_content['custom'.++$c]='<tr><td class="badge-entry"><span class="total-badges">'.count($badges).' '.qa_lang('badges/badges_total').'</span>'.($totalawarded > 0 ? ', <span class="total-badge-count">'.$totalawarded.' '.qa_lang('badges/awarded_total').'</span>':'').'</td></tr></table>';
+			$qa_content['custom'.++$c]='<table class="badge-entry"><tr class="badge-entry-badge"><span class="total-badges">'.count($badges).' '.qa_lang('badges/badges_total').'</span>'.($totalawarded > 0 ? ', <span class="total-badge-count">'.$totalawarded.' '.qa_lang('badges/awarded_total').'</span>':'').'</tr></table> </div>
+<script>
+// Groups Badges by "category"
+jQuery(\'.entry-bronze\').each(function (index) {
+	if(jQuery(this).parent().next().find(\'.entry-silver\').length !== 0 && jQuery(this).parent().next().next().find(\'.entry-gold\').length !== 0){
+		jQuery(this).parent().nextUntil().addBack().slice(0, 3).wrapAll(\'<div class="badgeGroup"></div>\');
+	}
+	else if(jQuery(this).parent().next().find(\'.entry-silver\').length !== 0){
+		jQuery(this).parent().nextUntil().addBack().slice(0, 2).wrapAll(\'<div class="badgeGroup"></div>\');
+	}
+	else {
+		jQuery(this).parent().wrapAll(\'<div class="badgeGroup"></div>\');
+	}
+});
+</script>';
 
 			if(isset($qa_content['navigation']['main']['custom-2'])) $qa_content['navigation']['main']['custom-2']['selected'] = true;
 

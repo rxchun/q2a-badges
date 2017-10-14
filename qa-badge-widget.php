@@ -45,13 +45,13 @@
 				$name = qa_opt('badge_'.$slug.'_name');
 				$desc = qa_badge_desc_replace($slug,$var,false);
 				
-				$string = '<span class="badge-'.$types.'" title="'.$desc.' ('.$typed.')">'.qa_html($name).'<br/>- '.$badge['handle'].' -</span>';
+				$string = '<span class="badge-'.$types.'" title="'.$desc.' ('.$typed.')">'.qa_html($name).'</span> <span class="wibawho">'.$badge['handle'].'</span>';
 				
 				if($first) {
 					$themeobject->output('<h2>'.qa_lang('badges/badge_widget_title').'</h2>');
 					$first = false;
 				}
-				$themeobject->output('<div class="badge-widget-entry" style="padding-top:8px;">',$string,'</div>');
+				$themeobject->output('<div class="badge-widget-entry">',$string,'</div>');
 			}
 		}
 	};

@@ -217,17 +217,15 @@
 						//qa_db_usernotice_create($uid, $content, 'html');
 						
 						if(qa_opt('badge_email_notify') && $notify == 1) qa_badge_notification($uid, $oid, $badge_slug);
-						
-						if(qa_opt('event_logger_to_database')) { // add event
-							
-							$handle = qa_getHandleFromId($uid);
-							
-							qa_db_query_sub(
-								'INSERT INTO ^eventlog (datetime, ipaddress, userid, handle, cookieid, event, params) '.
-								'VALUES (NOW(), $, $, $, #, $, $)',
-								qa_remote_ip_address(), $uid, $handle, qa_cookie_get(), 'badge_awarded', 'badge_slug='.$badge_slug.($oid?"\t".'postid='.$oid:'')
-							);
+
+						// raise an event
+
+						$event_params = array('badge_slug' => $badge_slug);
+						if ($iod) {
+							$event_params['postid'] = $iod;
 						}
+						
+						qa_report_event('badge_awarded', $uid, qa_getHandleFromId($uid), qa_cookie_get(), $event_params);
 					}
 					
 					array_push($awarded,$badge_slug);

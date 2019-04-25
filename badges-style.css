@@ -167,7 +167,7 @@ table.badge-entry {
 	font-size: 14px;
     margin-bottom: 2px;
 }
-#badge-medals-widget {
+.badge-medals-widget {
     white-space: nowrap;
 	display: inline-block;
 }

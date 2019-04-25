@@ -217,9 +217,7 @@
 						//qa_db_usernotice_create($uid, $content, 'html');
 						
 						if(qa_opt('badge_email_notify') && $notify == 1) qa_badge_notification($uid, $oid, $badge_slug);
-
 						// raise an event
-
 						$event_params = array('badge_slug' => $badge_slug);
 						if ($iod) {
 							$event_params['postid'] = $iod;
@@ -416,7 +414,7 @@
 			foreach($result as $slug) {
 				$bcount[$badges[$slug]['type']] = isset($bcount[$badges[$slug]['type']])?$bcount[$badges[$slug]['type']]+1:1; 
 			}
-			$output='<span id="badge-medals-widget">';
+			$output='<span class="badge-medals-widget">';
 			for($x = 2; $x >= 0; $x--) {
 				if(!isset($bcount[$x])) continue;
 				$count = $bcount[$x];
@@ -473,8 +471,8 @@
 					$output = '
 							<table>
 								<tr>
-									<td class="qa-form-wide-label">
-										<h3 class="badge-title" title="'.qa_lang('badges/'.$types.'_desc').'">'.$typed.'</h3>
+									<td class="badge-title-wrapper qa-form-wide-label">
+										<h3 class="badge-title" title="'.qa_lang('badges/'.$types.'_desc').'">'.$typed.' <span id="hmb-'.$typed.'" class="hmb-perclass">('.count($badge).')</span></h3>
 									</td>
 								</tr>';				
 					foreach($badge as $slug => $info) {

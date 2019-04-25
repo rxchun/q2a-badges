@@ -5,7 +5,13 @@ Question2Answer Badges
 -----------
 Extended version changelog:
 -----------
+4.9.2
+- Badges counter added next to titles on profile pages. Example: Bronze(6), Silver(1), Gold(3)
 
+4.9.1
+- Send badge awarded events through the event system - by pvginkel.
+
+4.9
 - Badges styles fully redesigned.
 - Mobile ready styles.
 - Added algorithm to group Badges by "topics" on Badges page.
@@ -15,9 +21,9 @@ Extended version changelog:
 Screenshots
 
 - Badges page: https://goo.gl/Zmn89g
-- Badges on rofile page: https://goo.gl/X9pzw5
-- Badges on rofile page (Right-To-Left): https://goo.gl/dn1KwX
-- Badges on rofile page (Mobile) : https://goo.gl/hbpS5E
+- Badges on profile page: https://goo.gl/X9pzw5
+- Badges on profile page (Right-To-Left): https://goo.gl/dn1KwX
+- Badges on profile page (Mobile) : https://goo.gl/hbpS5E
 
 -----------
 Description

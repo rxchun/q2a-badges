@@ -108,7 +108,7 @@
 			
 			
 			$qa_content['custom'.++$c]='<table class="badge-entry"><tr class="badge-entry-badge"><span class="total-badges">'.count($badges).' '.qa_lang('badges/badges_total').'</span>'.($totalawarded > 0 ? ', <span class="total-badge-count">'.$totalawarded.' '.qa_lang('badges/awarded_total').'</span>':'').'</tr></table> </div>
-<script>
+<script type="text/javascript">
 // Groups Badges by "category"
 jQuery(\'.entry-bronze\').each(function (index) {
 	if(jQuery(this).parent().next().find(\'.entry-silver\').length !== 0 && jQuery(this).parent().next().next().find(\'.entry-gold\').length !== 0){

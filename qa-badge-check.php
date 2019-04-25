@@ -616,17 +616,15 @@
 				'VALUES (NOW(), 1, #, #, $, 0)',
 				$object_id, $user_id, $badge_slug
 			);
-			
-			if(qa_opt('event_logger_to_database')) { // add event
-				
-				$handle = qa_getHandleFromId($user_id);
-				
-				qa_db_query_sub(
-					'INSERT INTO ^eventlog (datetime, ipaddress, userid, handle, cookieid, event, params) '.
-					'VALUES (NOW(), $, $, $, #, $, $)',
-					qa_remote_ip_address(), $user_id, $handle, qa_cookie_get(), 'badge_awarded', 'badge_slug='.$badge_slug.($object_id?"\t".'postid='.$object_id:'')
-				);
+
+			// raise an event
+
+			$event_params = array('badge_slug' => $badge_slug);
+			if ($object_id) {
+				$event_params['postid'] = $object_id;
 			}
+			
+			qa_report_event('badge_awarded', $user_id, qa_getHandleFromId($user_id), qa_cookie_get(), $event_params);
 			
 			if(qa_opt('badge_email_notify')) qa_badge_notification($user_id, $object_id, $badge_slug);	
 			

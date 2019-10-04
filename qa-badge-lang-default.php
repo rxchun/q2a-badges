@@ -17,6 +17,10 @@
 		'nice_answer_old'=>'Renewal',
 		'good_answer_old'=>'Revival',
 		'great_answer_old'=>'Resurrection',
+		
+		'nice_comment'=>'Nice Comment',
+		'good_comment'=>'Good Comment',
+		'great_comment'=>'Great Comment',
 
 
 		'gifted'=>'Gifted',
@@ -100,6 +104,10 @@
 		'good_answer_desc'=>'Answer received +# upvote',
 		'great_answer_desc'=>'Answer received +# upvote',
 
+		'nice_comment_desc'=>'Comment received +# upvote',
+		'good_comment_desc'=>'Comment received +# upvote',
+		'great_comment_desc'=>'Comment received +# upvote',
+		
 		'nice_answer_old_desc'=>'Received $nice_answer badge in response to a question more than # ^day^days old',
 		'good_answer_old_desc'=>'Received $good_answer badge in response to a question more than # ^day^days old',
 		'great_answer_old_desc'=>'Received $great_answer badge in response to a question more than # ^day^days old',

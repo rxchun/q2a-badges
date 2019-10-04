@@ -1,6 +1,30 @@
 <?php
 	class qa_badge_admin {
 
+
+function custom_badges() {
+                        return array(
+                                'nice_comment' => array('var'=>2, 'type'=>0),
+                                'good_comment' => array('var'=>5, 'type'=>1),
+                                'great_comment' => array('var'=>10, 'type'=>2)
+                        );
+                }
+		 function custom_badges_rebuild() {
+                        $awarded = 0;
+
+                        $posts = qa_db_query_sub(
+                                'SELECT userid, postid, netvotes FROM ^posts WHERE type=$ AND netvotes>0',
+                                'C'
+                        );
+                        while ( ($post=qa_db_read_one_assoc($posts,true)) !== null ) {
+                                $badges = array('nice_comment','good_comment','excellent_comment');
+                                $awarded += count(qa_badge_award_check($badges,(int)$post['netvotes'],$post['userid'],$post['postid'],2));
+                        }
+                        return $awarded;
+                }
+
+
+
 		function allow_template($template)
 		{
 			return ($template!='admin');

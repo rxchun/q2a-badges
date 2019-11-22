@@ -219,8 +219,8 @@
 						if(qa_opt('badge_email_notify') && $notify == 1) qa_badge_notification($uid, $oid, $badge_slug);
 						// raise an event
 						$event_params = array('badge_slug' => $badge_slug);
-						if ($iod) {
-							$event_params['postid'] = $iod;
+						if ($oid) {
+							$event_params['postid'] = $oid;
 						}
 						
 						qa_report_event('badge_awarded', $uid, qa_getHandleFromId($uid), qa_cookie_get(), $event_params);

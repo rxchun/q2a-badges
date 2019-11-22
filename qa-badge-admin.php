@@ -1,30 +1,28 @@
 <?php
 	class qa_badge_admin {
 
+		function custom_badges() {
+			return array(
+				'nice_comment' => array('var'=>2, 'type'=>0),
+				'good_comment' => array('var'=>5, 'type'=>1),
+				'great_comment' => array('var'=>10, 'type'=>2)
+			);
+		}
+		
+		function custom_badges_rebuild() {
+			$awarded = 0;
 
-function custom_badges() {
-                        return array(
-                                'nice_comment' => array('var'=>2, 'type'=>0),
-                                'good_comment' => array('var'=>5, 'type'=>1),
-                                'great_comment' => array('var'=>10, 'type'=>2)
-                        );
-                }
-		 function custom_badges_rebuild() {
-                        $awarded = 0;
-
-                        $posts = qa_db_query_sub(
-                                'SELECT userid, postid, netvotes FROM ^posts WHERE type=$ AND netvotes>0',
-                                'C'
-                        );
-                        while ( ($post=qa_db_read_one_assoc($posts,true)) !== null ) {
-                                $badges = array('nice_comment','good_comment','excellent_comment');
-                                $awarded += count(qa_badge_award_check($badges,(int)$post['netvotes'],$post['userid'],$post['postid'],2));
-                        }
-                        return $awarded;
-                }
-
-
-
+			$posts = qa_db_query_sub(
+				'SELECT userid, postid, netvotes FROM ^posts WHERE type=$ AND netvotes>0',
+				'C'
+			);
+			while ( ($post=qa_db_read_one_assoc($posts,true)) !== null ) {
+				$badges = array('nice_comment','good_comment','excellent_comment');
+				$awarded += count(qa_badge_award_check($badges,(int)$post['netvotes'],$post['userid'],$post['postid'],2));
+			}
+			return $awarded;
+		}
+		
 		function allow_template($template)
 		{
 			return ($template!='admin');
@@ -333,7 +331,7 @@ You may cancel these notices at any time by visiting your profile at the link ab
 					'label' => 'Badge css stylesheet',
 					'tags' => 'NAME="badges_css"',
 					'value' => qa_opt('badges_css'),
-					'rows' => 20,
+					'rows' => 6,
 					'type' => 'textarea',
 				);
 				
@@ -386,7 +384,7 @@ You may cancel these notices at any time by visiting your profile at the link ab
 					'value' => qa_opt('badge_email_body'),
 					'type' => 'textarea',
 					'rows' => 20,
-					'note' => 'Available replacement text:<br/><br/><i>^site_title<br/>^handle<br/>^email<br/>^open<br/>^close<br/>^badge_name<br/>^post_title<br/>^post_url<br/>^profile_url<br/>^site_url<br/>^if_post_text="text"</i></td></tr></table>',
+					'note' => 'Available replacement text:<i>^site_title^handle^email^open^close^badge_name^post_title^post_url^profile_url^site_url^if_post_text="text"</i></td></tr></table>',
 				);
 
 				$fields[] = array(
@@ -404,12 +402,12 @@ You may cancel these notices at any time by visiting your profile at the link ab
 					array(
 						'label' => qa_lang('badges/badge_trigger_notify'),
 						'tags' => 'name="badge_trigger_notify"'.(qa_opt('badge_active')?'':' disabled="true"'),
-						'note' => '<br/><em>'.qa_lang('badges/badge_trigger_notify_desc').'</em><br/>',
+						'note' => '<em>'.qa_lang('badges/badge_trigger_notify_desc').'</em>',
 					),
 					array(
 						'label' => qa_lang('badges/badge_reset_names'),
 						'tags' => 'NAME="badge_reset_names"',
-						'note' => '<br/><em>'.qa_lang('badges/badge_reset_names_desc').'</em><br/>',
+						'note' => '<em>'.qa_lang('badges/badge_reset_names_desc').'</em>',
 					),
 					array(
 						'label' => qa_lang('badges/badge_reset_css'),
@@ -418,17 +416,17 @@ You may cancel these notices at any time by visiting your profile at the link ab
 					array(
 						'label' => qa_lang('badges/badge_reset_values'),
 						'tags' => 'NAME="badge_reset_values"',
-						'note' => '<br/><em>'.qa_lang('badges/badge_reset_values_desc').'</em><br/>',
+						'note' => '<em>'.qa_lang('badges/badge_reset_values_desc').'</em>',
 					),
 					array(
 						'label' => qa_lang('badges/badge_award_button'),
 						'tags' => 'NAME="badge_award_button"',
-						'note' => '<br/><em>'.qa_lang('badges/badge_award_button_desc').'</em><br/><input type="checkbox" name="badge_award_delete"><b>'.qa_lang('badges/badge_award_delete_desc').'</b><br/>',
+						'note' => '<em>'.qa_lang('badges/badge_award_button_desc').'</em><br/><input type="checkbox" name="badge_award_delete"><b>'.qa_lang('badges/badge_award_delete_desc').'</b>',
 					),
 					array(
 						'label' => qa_lang('badges/save_settings'),
 						'tags' => 'NAME="badge_save_settings"',
-						'note' => '<br/><em>'.qa_lang('badges/save_settings_desc').'</em><br/>',
+						'note' => '<em>'.qa_lang('badges/save_settings_desc').'</em>',
 					),
 				),
 			);

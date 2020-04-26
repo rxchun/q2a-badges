@@ -155,7 +155,7 @@ table.badge-entry {
 
 .badgeGroup {
     border-top: 1px solid #E0E0E0;
-    padding-top: 5px;
+    padding: .6rem 0;
 }
 
 .badge-entry-desc {

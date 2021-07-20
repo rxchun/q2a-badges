@@ -160,7 +160,10 @@
 					jQuery('document').ready(function() { jQuery('.notify-container').delay(".((int)qa_opt('badge_notify_time')*1000).").fadeOut('fast'); });":"")."
 				</script>");
 			}
-			$this->output('<style>',qa_opt('badges_css'),'</style>');
+			// Added fix to remove empty <style> in <head>
+			if (qa_opt('badges_css') != null){
+				$this->output('<style>',qa_opt('badges_css'),'</style>');
+			}
 		}
 
 		function body_prefix()

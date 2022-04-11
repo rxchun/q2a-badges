@@ -2,12 +2,13 @@
     "name": "Badges Q2A",
     "uri": "https://github.com/heliochun/q2a-badges",
     "description": "This is a plugin for Question2Answer that provides basic badge functionality.",
-    "version": "4.9.3",
-    "date": "2019-11-22",
+    "version": "4.9.5",
+    "date": "2022-04-12",
     "author": "NoahY (extended by Chun)",
     "author_uri": "https://twitter.com/TweetChun",
     "license": "GPLv3+",
     "update_uri": "https://raw.githubusercontent.com/heliochun/q2a-badges/master/metadata.json",
     "min_q2a": "1.7",
-    "min_php": "5.2"
+    "min_php": "5.2",
+	"load_order": "after_db_init"
 }

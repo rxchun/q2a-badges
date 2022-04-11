@@ -80,7 +80,7 @@
 					
 					$users = array();
 					
-					require_once QA_INCLUDE_DIR.'qa-app-users.php';
+					require_once QA_INCLUDE_DIR.'app/users.php';
 
 					$qa_content['custom'.$c] .='<div style="display:none" id="badge-users-'.$slug.'" class="badge-users">';
 					foreach($count[$slug] as $uid => $ucount) {
@@ -129,7 +129,7 @@ jQuery(\'.entry-bronze\').each(function (index) {
 		}
 		
 		function getuserfromhandle($handle) {
-			require_once QA_INCLUDE_DIR.'qa-app-users.php';
+			require_once QA_INCLUDE_DIR.'app/users.php';
 			
 			if (QA_FINAL_EXTERNAL_USERS) {
 				$publictouserid=qa_get_userids_from_public(array($handle));

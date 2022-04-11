@@ -35,7 +35,7 @@
 					}
 				}
 				
-				require_once QA_INCLUDE_DIR.'qa-app-users.php';
+				require_once QA_INCLUDE_DIR.'app/users.php';
 
 				$userid = qa_get_logged_in_userid();
 
@@ -122,16 +122,19 @@
 		function head_custom() {
 			qa_html_theme_base::head_custom();
 			
+			// Patch Version
+			$patchNumber = '3';
+			
 			if(!qa_opt('badge_active'))
 				return;
 
 			// only load Styles if enabled
 			if (qa_opt('badge_active')) {
-				$this->output('<link rel="stylesheet" type="text/css" href="'.QA_HTML_THEME_LAYER_URLTOROOT.'badges-style.css">');
+				$this->output('<link rel="stylesheet" rel="preload" as="style" media="all" type="text/css" href="'.QA_HTML_THEME_LAYER_URLTOROOT.'css/badges-styles.css?v='.$patchNumber.'">');
 			}
 			// add RTL CSS file
 			if ($this->isRTL) {
-				$this->output('<link rel="stylesheet" type="text/css" href="'.QA_HTML_THEME_LAYER_URLTOROOT.'badges-rtl-style.css">');
+				$this->output('<link rel="stylesheet" rel="preload" as="style" media="all" type="text/css" href="'.QA_HTML_THEME_LAYER_URLTOROOT.'css/badges-rtl-style.css?v='.$patchNumber.'">');
 			}
 			
 			if (qa_opt('badge_active') && $this->template != 'admin')
@@ -353,7 +356,7 @@
 		}
 
 		function getuserfromhandle($handle) {
-			require_once QA_INCLUDE_DIR.'qa-app-users.php';
+			require_once QA_INCLUDE_DIR.'app/users.php';
 			
 			if (QA_FINAL_EXTERNAL_USERS) {
 				$publictouserid=qa_get_userids_from_public(array($handle));

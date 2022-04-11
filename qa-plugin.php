@@ -237,8 +237,8 @@
 		if(!qa_opt('badge_email_notify_id_'.$uid))
 			return;
 		
-		require_once QA_INCLUDE_DIR.'qa-app-users.php';
-		require_once QA_INCLUDE_DIR.'qa-app-emails.php';
+		require_once QA_INCLUDE_DIR.'app/users.php';
+		require_once QA_INCLUDE_DIR.'app/emails.php';
 		
 		if (QA_FINAL_EXTERNAL_USERS) {
 			$publictohandle=qa_get_public_from_userids(array($uid));
@@ -373,7 +373,7 @@
 	if(!function_exists('qa_getHandleFromId')) {
 		
 		function qa_getHandleFromId($userid) {
-			require_once QA_INCLUDE_DIR.'qa-app-users.php';
+			require_once QA_INCLUDE_DIR.'app/users.php';
 			
 			if (QA_FINAL_EXTERNAL_USERS) {
 				$publictohandle=qa_get_public_from_userids(array($userid));
@@ -424,7 +424,7 @@
 				$types = $type['slug'];
 				$typed = $type['name'];
 
-				$output.='<span class="badge-pointer badge-'.$types.'-medal" title="'.$count.' '.$typed.'">●</span><span class="badge-pointer badge-'.$types.'-count" title="'.$count.' '.$typed.'">'.$count.'</span> ';
+				$output.='<span class="badge-pointer badge-pointer-'.$typed.'" title="'.$count.' '.$typed.'"><span class="badge-'.$types.'-medal">●</span><span class="badge-'.$types.'-count">'.$count.'</span></span> ';
 			}
 			$output = substr($output,0,-1);  // lazy remove space
 			$output.='</span>';
@@ -472,7 +472,7 @@
 							<table>
 								<tr>
 									<td class="badge-title-wrapper qa-form-wide-label">
-										<h3 class="badge-title" title="'.qa_lang('badges/'.$types.'_desc').'">'.$typed.' <span id="hmb-'.$typed.'" class="hmb-perclass">('.count($badge).')</span></h3>
+										<h3 class="badge-title badge-title-'.$typed.'"><span class="badge-title-pointer" title="'.qa_lang('badges/'.$types.'_desc').'">'.$typed.'</span> <span id="hmb-'.$typed.'" class="hmb-perclass">('.count($badge).')</span></h3>
 									</td>
 								</tr>';				
 					foreach($badge as $slug => $info) {

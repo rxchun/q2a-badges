@@ -123,7 +123,7 @@
 			qa_html_theme_base::head_custom();
 			
 			// Patch Version
-			$patchNumber = '3';
+			$patchNumber = '12';
 			
 			if(!qa_opt('badge_active'))
 				return;

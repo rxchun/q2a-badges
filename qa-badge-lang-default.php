@@ -253,7 +253,11 @@
 		'widget_date_max' => 'Maximum age of badges in widget',
 
 		'save_settings'=>'Save',
-		'save_settings_desc'=>'save above settings'
+		'save_settings_desc'=>'save above settings',
+		
+		/* New stuff */
+		'badge_of_type'=>'of type (Excluding repeated Badges)',
+		'badge_empty_source'=>'Deleted post'
 	);
 	
 

@@ -66,7 +66,6 @@
 }
 
 .badge-count {
-    background-color: #fff;
     color: #9E9E9E;
     padding: 5px 6px;
 }
@@ -177,6 +176,78 @@ table.badge-entry {
 .badges-tabs-content .qa-part-message-list {
     display: none;
 }
+
+.badge-container-sources {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+	z-index: 2;
+	display: none;
+}
+.q2a-show-badge-source {
+    display: block;
+}
+.badge-wrapper-sources {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translateX(-50%) translateY(-50%);
+    background-color: #fff;
+    padding: 1rem;
+    box-shadow: 0px 1px 2px 0px rgb(60 64 67 / 30%), 0px 2px 6px 2px rgb(60 64 67 / 15%);
+    border-radius: 3px;
+	width: 85%;
+    max-width: 375px;
+	z-index: 1;
+}
+.badge-wrapper-sources h3 {
+    -webkit-box-shadow: 0 5px 2px -2px rgb(0 0 0 / 20%);
+    box-shadow: 0 5px 2px -4px rgb(0 0 0 / 10%);
+    padding-bottom: 5px;
+    margin: 0;
+	text-align: center;
+}
+.badge-wrapperToo-sources {
+    height: 50vh;
+    padding: 1rem;
+    max-height: 300px;
+    overflow: auto;
+}
+.badge-who-received {
+    display: inline-block;
+    width: 50%;
+    margin-bottom: 6px;
+}
+.badge-source-title-description {
+    display: block;
+	font-size: small;
+    font-weight: normal;
+    margin-inline-start: 12px;
+}
+.badge-close-source {
+	position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgb(0 0 0 / 30%);
+}
+.badge-close-sbtn {
+    position: absolute;
+    top: -13px;
+    right: -13px;
+    width: 26px;
+    height: 26px;
+    line-height: 25px;
+    text-align: center;
+    font-family: cursive;
+    background-color: #e0e0e0;
+    border-radius: 35px;
+	cursor: pointer;
+}
+
 .qa-part-form-badges-list {
     width: 100%;
     overflow: hidden;
@@ -184,8 +255,13 @@ table.badge-entry {
 .badge-source {
     font-size: .875rem;
 }
+.badge-source:not(:last-child) {
+    border-bottom: 1px solid #e0e0e0;
+}
 .badge-source:before {
-    content: "►";
+	content: "\25B6"; /* play button ► */
+	margin: 3px 0;
+    margin-inline-end: 6px;
 }
 
 

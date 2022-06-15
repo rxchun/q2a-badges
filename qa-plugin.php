@@ -472,7 +472,7 @@
 							<table>
 								<tr>
 									<td class="badge-title-wrapper qa-form-wide-label">
-										<h3 class="badge-title badge-title-'.$typed.'"><span class="badge-title-pointer" title="'.qa_lang('badges/'.$types.'_desc').'">'.$typed.'</span> <span id="hmb-'.$typed.'" class="hmb-perclass">('.count($badge).')</span></h3>
+										<h3 class="badge-title badge-title-'.$typed.'"><span class="badge-title-pointer" title="'.qa_lang('badges/'.$types.'_desc').'">'.$typed.'</span> <span id="hmb-'.$typed.'" class="hmb-perclass" title="'.count($badge).' ' .qa_lang('badges/badge_of_type').'">('.count($badge).')</span></h3>
 									</td>
 								</tr>';				
 					foreach($badge as $slug => $info) {
@@ -497,41 +497,55 @@
 								<tr>
 									<td class="badge-container">
 										<div class="badge-container-badge">
-											<span class="badge-'.$types.'" title="'.$desc.' ('.$typed.')">'.qa_html($name).'</span>&nbsp;<span onclick="jQuery(\'.badge-container-sources-'.$slug.'\').slideToggle()" class="badge-count'.(is_array($oids)?' badge-count-link" title="'.qa_lang('badges/badge_count_click'):'').'">x'.$count.'</span>
+											<span class="badge-'.$types.'" title="'.$desc.' ('.$typed.')">'.qa_html($name).'</span>&nbsp;<span onclick="jQuery(\'.badge-source-'.$slug.'\').toggleClass(\'q2a-show-badge-source\')" class="badge-count'.(is_array($oids)?' badge-count-link" title="'.qa_lang('badges/badge_count_click'):'').'">x'.$count.'</span>
 										</div>';
 						
 						// source row(s) if any	
 						if(is_array($oids)) {
 							$output .= '
-										<div class="badge-container-sources-'.$slug.'" style="display:none">';
-							foreach($oids as $oid) {
-								$post = qa_db_select_with_pending(
-									qa_db_full_post_selectspec(null, $oid)
-								);								
-								$title=$post['title'];
-								
-								$anchor = '';
-								
-								if($post['parentid']) {
-									$anchor = urlencode(qa_anchor($post['type'],$oid));
-									$oid = $post['parentid'];
-									$title = qa_db_read_one_value(
-										qa_db_query_sub(
-											'SELECT BINARY title as title FROM ^posts WHERE postid=#',
-											$oid
-										),
-										true
-									);	
-								}
-								
-								$length = 30;
-								
-								$text = (qa_strlen($title) > $length ? qa_substr($title,0,$length).'...' : $title);
-								
-								$output .= '
-											<div class="badge-source"><a href="'.qa_path_html(qa_q_request($oid,$title),NULL,qa_opt('site_url')).($anchor?'#'.$anchor:'').'">'.qa_html($text).'</a></div>';
-							}
-							$output .= '</div>';
+									<div class="badge-container-sources badge-source-'.$slug.'">
+										<div class="badge-wrapper-sources">
+											<h3>
+												<span class="badge-'.$types.'">'.qa_html($name).'</span><span class="badge-source-title-description">'.$desc.' ('.$typed.')</span>
+											</h3>
+											<div class="badge-wrapperToo-sources">';
+												foreach($oids as $oid) {
+													$post = qa_db_select_with_pending(
+														qa_db_full_post_selectspec(null, $oid)
+													);								
+													$title=$post['title'];
+													
+													$anchor = '';
+													
+													if($post['parentid']) {
+														$anchor = urlencode(qa_anchor($post['type'],$oid));
+														$oid = $post['parentid'];
+														$title = qa_db_read_one_value(
+															qa_db_query_sub(
+																'SELECT BINARY title as title FROM ^posts WHERE postid=#',
+																$oid
+															),
+															true
+														);	
+													}
+													
+													$length = 30;
+													
+													$text = (qa_strlen($title) > $length ? qa_substr($title,0,$length).'...' : $title);
+													if(qa_strlen($text) === 0){
+														$text = '<span>'.qa_lang('badges/badge_empty_source').'</span>';
+													} else {
+														$text = '<a href="'.qa_path_html(qa_q_request($oid,$title),NULL,qa_opt('site_url')).($anchor?'#'.$anchor:'').'">'.qa_html($text).'</a>';
+													}
+													
+													$output .= '<div class="badge-source">'. $text .'</div>';
+												}
+												$output .= '
+											</div>
+											<div class="badge-close-sbtn" onclick="jQuery(\'.badge-source-'.$slug.'\').removeClass(\'q2a-show-badge-source\')">✖</div>
+										</div>
+										<div class="badge-close-source" onclick="jQuery(\'.badge-source-'.$slug.'\').removeClass(\'q2a-show-badge-source\')"></div>
+									</div>';
 						}
 						$output .= '
 									</td>

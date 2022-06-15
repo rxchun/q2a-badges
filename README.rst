@@ -43,8 +43,8 @@ Screenshots
 - (New) How many Badges earned per type: Screenshot-3_
 - Badges page: Screenshot-4_
 - Badges on profile page: Screenshot-5_
-- Badges on profile page (Right-To-Left): Screenshot 6_
-- Badges on profile page (Mobile) : Screenshot 7_
+- Badges on profile page (Right-To-Left): Screenshot-6_
+- Badges on profile page (Mobile) : Screenshot-7_
 
 .. _Screenshot-1: https://raw.githubusercontent.com/heliochun/q2a-badges/master/screenshots/new-features-2.png
 .. _Screenshot-2: https://raw.githubusercontent.com/heliochun/q2a-badges/master/screenshots/new-features-3.png

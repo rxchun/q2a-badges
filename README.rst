@@ -5,18 +5,30 @@ Question2Answer Badges
 -----------
 Extended version changelog:
 -----------
+
+--------
 5.0
+--------
+
 - Badges Page: Badges source/Users who received, now is displayed in a Pop up, instead of a SlideDown toggle below the respective badge.
 - Profile Page: Now Badge title show the number of Badges you've earned for each type of badge. (Ex: Bronze 33, Silver 9, Gold 3)
 - Other fixes/arrangements
 
+--------
 4.9.2
+--------
 - Badges counter added next to titles on profile pages. Example: Bronze(6), Silver(1), Gold(3)
 
+--------
 4.9.1
+--------
+
 - Send badge awarded events through the event system - by pvginkel.
 
+--------
 4.9
+--------
+
 - Badges styles fully redesigned.
 - Mobile ready styles.
 - Added algorithm to group Badges by "topics" on Badges page.

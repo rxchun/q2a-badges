@@ -1,33 +1,23 @@
 ==============================
-Question2Answer Badges
+Question2Answer Badges (Extended version)
 ==============================
 
------------
-Extended version changelog:
------------
-
---------
-5.0
---------
+###### 5.0
 
 - Badges Page: Badges source/Users who received, now is displayed in a Pop up, instead of a SlideDown toggle below the respective badge.
 - Profile Page: Now Badge title show the number of Badges you've earned for each type of badge. (Ex: Bronze 33, Silver 9, Gold 3)
 - Other fixes/arrangements
+Screenshots - [Jump to section](https://github.com/heliochun/q2a-badges#screenshots).
 
---------
-4.9.2
---------
+###### 4.9.2
+
 - Badges counter added next to titles on profile pages. Example: Bronze(6), Silver(1), Gold(3)
 
---------
-4.9.1
---------
+###### 4.9.1
 
 - Send badge awarded events through the event system - by pvginkel.
 
---------
-4.9
---------
+###### 4.9
 
 - Badges styles fully redesigned.
 - Mobile ready styles.
@@ -35,12 +25,15 @@ Extended version changelog:
 - Added supported styles for Right-To-Left Themes.
 - Fixed badges not appearing next to the User on question lists and next to the Loggedin text on the navigation bar.
 
-Screenshots
+###### Screenshots
 
-- Badges page: https://goo.gl/Zmn89g
-- Badges on profile page: https://goo.gl/X9pzw5
-- Badges on profile page (Right-To-Left): https://goo.gl/dn1KwX
-- Badges on profile page (Mobile) : https://goo.gl/hbpS5E
+- (New) Badge source, Pop up: [Screenshot](https://raw.githubusercontent.com/heliochun/q2a-badges/master/screenshots/new-features-2.png)
+- (New) Who received Badge list, Pop up: [Screenshot](https://raw.githubusercontent.com/heliochun/q2a-badges/master/screenshots/new-features-3.png)
+- (New) How many Badges earned per type: [Screenshot](https://raw.githubusercontent.com/heliochun/q2a-badges/master/screenshots/new-features-1.png)
+- Badges page: [Screenshot](https://raw.githubusercontent.com/heliochun/q2a-badges/9abcd1f77a2e450ecb9b3fc0755e9113966f210a/screenshots/badges-page.png)
+- Badges on profile page: [Screenshot](https://raw.githubusercontent.com/heliochun/q2a-badges/9abcd1f77a2e450ecb9b3fc0755e9113966f210a/screenshots/badges-profile-page.png)
+- Badges on profile page (Right-To-Left): [Screenshot](https://raw.githubusercontent.com/heliochun/q2a-badges/9abcd1f77a2e450ecb9b3fc0755e9113966f210a/screenshots/badges-rtl-profile-page.png)
+- Badges on profile page (Mobile) : [Screenshot](https://raw.githubusercontent.com/heliochun/q2a-badges/9abcd1f77a2e450ecb9b3fc0755e9113966f210a/screenshots/badges-profile-page-mobile.png)
 
 -----------
 Description

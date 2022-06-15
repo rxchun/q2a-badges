@@ -38,21 +38,21 @@ Screenshots
 -----------
 .. _screenshots:
 
-- (New) Badge source, Pop up: Screenshot 1_
-- (New) Who received Badge list, Pop up: Screenshot 2_
-- (New) How many Badges earned per type: Screenshot 3_
-- Badges page: Screenshot 4_
-- Badges on profile page: Screenshot 5_
+- (New) Badge source, Pop up: Screenshot-1_
+- (New) Who received Badge list, Pop up: Screenshot-2_
+- (New) How many Badges earned per type: Screenshot-3_
+- Badges page: Screenshot-4_
+- Badges on profile page: Screenshot-5_
 - Badges on profile page (Right-To-Left): Screenshot 6_
 - Badges on profile page (Mobile) : Screenshot 7_
 
-.. _Screenshot 1: https://raw.githubusercontent.com/heliochun/q2a-badges/master/screenshots/new-features-2.png
-.. _Screenshot 2: https://raw.githubusercontent.com/heliochun/q2a-badges/master/screenshots/new-features-3.png
-.. _Screenshot 3: https://raw.githubusercontent.com/heliochun/q2a-badges/master/screenshots/new-features-1.png
-.. _Screenshot 4: https://raw.githubusercontent.com/heliochun/q2a-badges/9abcd1f77a2e450ecb9b3fc0755e9113966f210a/screenshots/badges-page.png
-.. _Screenshot 5: https://raw.githubusercontent.com/heliochun/q2a-badges/9abcd1f77a2e450ecb9b3fc0755e9113966f210a/screenshots/badges-profile-page.png
-.. _Screenshot 6: https://raw.githubusercontent.com/heliochun/q2a-badges/9abcd1f77a2e450ecb9b3fc0755e9113966f210a/screenshots/badges-rtl-profile-page.png
-.. _Screenshot 7: https://raw.githubusercontent.com/heliochun/q2a-badges/9abcd1f77a2e450ecb9b3fc0755e9113966f210a/screenshots/badges-profile-page-mobile.png
+.. _Screenshot-1: https://raw.githubusercontent.com/heliochun/q2a-badges/master/screenshots/new-features-2.png
+.. _Screenshot-2: https://raw.githubusercontent.com/heliochun/q2a-badges/master/screenshots/new-features-3.png
+.. _Screenshot-3: https://raw.githubusercontent.com/heliochun/q2a-badges/master/screenshots/new-features-1.png
+.. _Screenshot-4: https://raw.githubusercontent.com/heliochun/q2a-badges/9abcd1f77a2e450ecb9b3fc0755e9113966f210a/screenshots/badges-page.png
+.. _Screenshot-5: https://raw.githubusercontent.com/heliochun/q2a-badges/9abcd1f77a2e450ecb9b3fc0755e9113966f210a/screenshots/badges-profile-page.png
+.. _Screenshot-6: https://raw.githubusercontent.com/heliochun/q2a-badges/9abcd1f77a2e450ecb9b3fc0755e9113966f210a/screenshots/badges-rtl-profile-page.png
+.. _Screenshot-7: https://raw.githubusercontent.com/heliochun/q2a-badges/9abcd1f77a2e450ecb9b3fc0755e9113966f210a/screenshots/badges-profile-page-mobile.png
 
 -----------
 Description

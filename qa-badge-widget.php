@@ -14,7 +14,7 @@
 
 		function output_widget($region, $place, $themeobject, $template, $request, $qa_content)
 		{
-			echo'<div class="qa-badges-widget">';
+			$themeobject->output('<div class="qa-badges-widget">');
 				if(!qa_opt('event_logger_to_database'))
 					return;
 				$badges = qa_db_query_sub(
@@ -54,7 +54,7 @@
 					}
 					$themeobject->output('<div class="badge-widget-entry">',$string,'</div>');
 				}
-			echo'</div>'; // END qa-badges-widget
+			$themeobject->output('</div>'); // END qa-badges-widget
 		}
 	};
 

@@ -82,37 +82,36 @@
 					
 					require_once QA_INCLUDE_DIR.'app/users.php';
 
-					$qa_content['custom'.$c] .= '
-									<div id="badge-users-'.$slug.'" class="badge-users badge-container-sources">
-										<div class="badge-wrapper-sources">
-											<h3>
-												<span class="badge-'.$types.'">'.qa_html($name).'</span><span class="badge-source-title-description">'.$desc.'</span>
-											</h3>
-											<div class="badge-wrapperToo-sources">';
-												foreach($count[$slug] as $uid => $ucount) {
-													if($uid == 'count') continue;
-													
-													if (QA_FINAL_EXTERNAL_USERS) {
-														$handles=qa_get_public_from_userids(array($uid));
-														$handle=@$handles[$uid];
-													} 
-													else {
-														$useraccount=qa_db_select_with_pending(
-															qa_db_user_account_selectspec($uid, true)
-														);
-														$handle=@$useraccount['handle'];
-													}
-													
-													if(!$handle) continue;
-													
-													$users[] = '<a href="'.qa_path_html('user/'.$handle).'">'.$handle.'</a>'.($ucount>1?' x'.$ucount:'');
-												}
-												$qa_content['custom'.$c] .= '<span class="badge-who-received">'. implode(',</span><span class="badge-who-received">',$users).'</span>'.
-											'</div>
-											<div class="badge-close-sbtn" onclick="jQuery(\'#badge-users-'.$slug.'\').removeClass(\'q2a-show-badge-source\')">✖</div>
-										</div>
-										<div class="badge-close-source" onclick="jQuery(\'#badge-users-'.$slug.'\').removeClass(\'q2a-show-badge-source\')"></div>
-									</div>';
+					$qa_content['custom'.$c] .= '<div id="badge-users-'.$slug.'" class="badge-users badge-container-sources">',
+													'<div class="badge-wrapper-sources">',
+														'<h3>',
+															'<span class="badge-'.$types.'">'.qa_html($name).'</span><span class="badge-source-title-description">'.$desc.'</span>',
+														'</h3>',
+														'<div class="badge-wrapperToo-sources">';
+															foreach($count[$slug] as $uid => $ucount) {
+																if($uid == 'count') continue;
+																
+																if (QA_FINAL_EXTERNAL_USERS) {
+																	$handles=qa_get_public_from_userids(array($uid));
+																	$handle=@$handles[$uid];
+																} 
+																else {
+																	$useraccount=qa_db_select_with_pending(
+																		qa_db_user_account_selectspec($uid, true)
+																	);
+																	$handle=@$useraccount['handle'];
+																}
+																
+																if(!$handle) continue;
+																
+																$users[] = '<a href="'.qa_path_html('user/'.$handle).'">'.$handle.'</a>'.($ucount>1?' x'.$ucount:'');
+															}
+															$qa_content['custom'.$c] .= '<span class="badge-who-received">'. implode(',</span><span class="badge-who-received">',$users).'</span>';
+							$qa_content['custom'.$c] .= '</div>',
+														'<div class="badge-close-sbtn" onclick="jQuery(\'#badge-users-'.$slug.'\').removeClass(\'q2a-show-badge-source\')">✖</div>',
+													'</div>',
+													'<div class="badge-close-source" onclick="jQuery(\'#badge-users-'.$slug.'\').removeClass(\'q2a-show-badge-source\')"></div>',
+												'</div>';
 				}
 				$qa_content['custom'.$c] .= '</table>';
 			}

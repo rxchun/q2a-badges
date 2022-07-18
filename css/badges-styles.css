@@ -76,12 +76,12 @@
 
 /* Badge Notifier */
 .notify-container {
-    position: fixed;
+	position: fixed;
 	top: initial; /* fix for older versions / plugin setting top attributes */
-    left: 25px;
-    bottom: 25px;
-    max-width: 520px;
-	z-index: 9999;
+	left: 25px;
+	bottom: 25px;
+	max-width: 520px;
+	z-index: 99999999;
 }
 .badge-notify {
     padding: 10px 40px 10px 25px;

@@ -24,3 +24,10 @@
 .badge-entry-badge td:nth-child(3) {
     text-align: left;
 }
+
+/* Badge Widget */
+.qa-badges-widget h2 span.svg-icon {
+    margin-right: initial;
+	margin-left: 0.5rem;
+}
+

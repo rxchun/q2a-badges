@@ -257,7 +257,11 @@
 		
 		/* New stuff */
 		'badge_of_type'=>'of type (Excluding repeated Badges)',
-		'badge_empty_source'=>'Deleted post'
+		'badge_empty_source'=>'Deleted post',
+		'badge_anonymous_user'=>'No data',
+		'close_badge_source'=>'Close',
+		'widget_badge_earned'=>'Earned a badge',
+		'widget_badge_earned_ago'=>'ago' // Example 3 months ago
 	);
 	
 

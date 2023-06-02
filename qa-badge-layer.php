@@ -123,23 +123,68 @@
 			qa_html_theme_base::head_custom();
 			
 			// Patch Version
-			$patchNumber = '15';
+			$patchNumber = '39';
 			
 			if(!qa_opt('badge_active'))
 				return;
 
 			// only load Styles if enabled
 			if (qa_opt('badge_active')) {
-				$this->output('<link rel="stylesheet" rel="preload" as="style" media="all" type="text/css" href="'.QA_HTML_THEME_LAYER_URLTOROOT.'css/badges-styles.css?v='.$patchNumber.'">');
+				$this->output('
+					<link rel="preload" as="style" href="'.QA_HTML_THEME_LAYER_URLTOROOT.'css/badges-styles.css?v='.$patchNumber.'" onload="this.onload=null;this.rel=\'stylesheet\'">
+					<noscript><link rel="stylesheet" href="'.QA_HTML_THEME_LAYER_URLTOROOT.'css/badges-styles.css?v='.$patchNumber.'"></noscript>
+				');
 			}
 			// add RTL CSS file
 			if ($this->isRTL) {
-				$this->output('<link rel="stylesheet" rel="preload" as="style" media="all" type="text/css" href="'.QA_HTML_THEME_LAYER_URLTOROOT.'css/badges-rtl-style.css?v='.$patchNumber.'">');
+				$this->output('
+					<link rel="preload" as="style" href="'.QA_HTML_THEME_LAYER_URLTOROOT.'css/badges-rtl-style.css?v='.$patchNumber.'" onload="this.onload=null;this.rel=\'stylesheet\'">
+					<noscript><link rel="stylesheet" href="'.QA_HTML_THEME_LAYER_URLTOROOT.'css/badges-rtl-style.css?v='.$patchNumber.'"></noscript>
+				');
 			}
 			
 			if (qa_opt('badge_active') && $this->template != 'admin')
 				$this->badge_notify();
 
+			// Added fix to remove empty <style> in <head>
+			if (qa_opt('badges_css') != null){
+				$this->output('<style>',qa_opt('badges_css'),'</style>');
+			}
+		}
+		
+		public function footer_scripts()
+		{
+			qa_html_theme_base::footer_scripts();
+			
+			if (qa_opt('badge_active') && $this->template != 'admin') {
+				$this->output("
+				<script>
+					// Handle document Z indexes for dark pane
+					jQuery(document).on('click', '.badge-count-link', function () {
+						jQuery('.leftPanel, .qa-header').addClass('zindex1');
+					});
+					
+					jQuery(document).on('click', '.badge-close-source, .badge-close-sbtn', function () {
+						jQuery('.leftPanel, .qa-header').removeClass('zindex1');
+					});
+				</script>
+				");
+			}
+			
+			// If user page - add scroll to section
+			if (qa_opt('badge_active') && $this->template == 'user') {
+				$this->output("
+				<script>
+					// Badges plugin Scroll DOM on earned badge
+					if (window.location.href.indexOf('badges') > -1) {
+						$([document.documentElement, document.body]).animate({
+							scrollTop: $('body.qa-template-user div.qa-part-form-badges-list').offset().top
+						}, 500);
+					}
+				</script>
+				");
+			}
+			
 			if ($this->request == 'admin/plugins' && qa_get_logged_in_level() >= QA_USER_LEVEL_ADMIN) {
 				$this->output("
 				<script>".(qa_opt('badge_notify_time') != '0'?"
@@ -156,19 +201,15 @@
 						jQuery('#badge_'+slug+'_edit').focus();
 					}
 				</script>");
-			}
-			else if (isset($this->badge_notice)) {
+			} else if (isset($this->badge_notice)) {
 				$this->output("
 				<script>".(qa_opt('badge_notify_time') != '0'?"
 					jQuery('document').ready(function() { jQuery('.notify-container').delay(".((int)qa_opt('badge_notify_time')*1000).").fadeOut('fast'); });":"")."
 				</script>");
 			}
-			// Added fix to remove empty <style> in <head>
-			if (qa_opt('badges_css') != null){
-				$this->output('<style>',qa_opt('badges_css'),'</style>');
-			}
+			
 		}
-
+		
 		function body_prefix()
 		{
 			qa_html_theme_base::body_prefix();
@@ -211,7 +252,9 @@
 
 		function post_meta_who($post, $class)
 		{
-			if (@$post['who'] && @$post['who']['data'] && qa_opt('badge_active') && (bool)qa_opt('badge_admin_user_widget') && ($class != 'qa-q-item' || qa_opt('badge_admin_user_widget_q_item')) ) {
+			if (empty($post['who']['level']) && @$post['who'] && @$post['who']['data'] && qa_opt('badge_active') && (bool)qa_opt('badge_admin_user_widget') && ($class != 'qa-q-item' || qa_opt('badge_admin_user_widget_q_item')) ) {
+				$post['who']['suffix'] = (@$post['who']['suffix']).' <span class="badge-medals-widget">'.qa_lang('badges/badge_anonymous_user').'</span>'; // No data
+			} else if (@$post['who'] && @$post['who']['data'] && qa_opt('badge_active') && (bool)qa_opt('badge_admin_user_widget') && ($class != 'qa-q-item' || qa_opt('badge_admin_user_widget_q_item')) ) {
 				$handle = preg_replace('/ *<[^>]+> */', '',$post['who']['data']);
 				$post['who']['suffix'] = (@$post['who']['suffix']).' '.qa_badge_plugin_user_widget($handle);
 			}
@@ -276,15 +319,13 @@
 			}
 		}
 
-		// add badges to users list
-
 		function ranking($ranking) {
 			
 			if(@$ranking['type']=='users' && qa_opt('badge_show_users_badges')) {
 				foreach($ranking['items'] as $idx => $item) {
 					$handle = preg_replace('/ *<[^>]+> */', '', $item['label']);
 					
-					if(isset($ranking['items'][$idx]['score'])) $ranking['items'][$idx]['score'] .= '</td><td class="qa-top-users-score">'.qa_badge_plugin_user_widget($handle);
+					if(isset($ranking['items'][$idx]['score'])) $ranking['items'][$idx]['score'] .= '</span>'.qa_badge_plugin_user_widget($handle);
 				}
 			}
 			qa_html_theme_base::ranking($ranking);
@@ -316,22 +357,22 @@
 			if(count($result) > 0) {
 				$notice = '<div class="notify-container">';
 				
-				if(count($result) == 1) {
-					$slug = $result[0];
-					$badge_name=qa_lang('badges/'.$slug);
-					if(!qa_opt('badge_'.$slug.'_name')) qa_opt('badge_'.$slug.'_name',$badge_name);
-					$name = qa_opt('badge_'.$slug.'_name');
-					
-					$notice .= '<div class="badge-notify notify">'.qa_lang('badges/badge_notify')."'".$name.'\'<span class="badge-profile-check">'.qa_lang('badges/badge_notify_profile_pre').'<a href="'.qa_path_html((QA_FINAL_EXTERNAL_USERS?qa_path_to_root():'').'user/'.qa_get_logged_in_handle(),array('tab'=>'badges'),qa_opt('site_url')).'">'.qa_lang('badges/badge_notify_profile').'</a></span><div class="notify-close" onclick="jQuery(this).parent().fadeOut()">&#10006;</div></div>';
-				}
-				else {
-					$number_text = count($result)>2?str_replace('#', count($result)-1, qa_lang('badges/badge_notify_multi_plural')):qa_lang('badges/badge_notify_multi_singular');
-					$slug = $result[0];
-					$badge_name=qa_lang('badges/'.$slug);
-					if(!qa_opt('badge_'.$slug.'_name')) qa_opt('badge_'.$slug.'_name',$badge_name);
-					$name = qa_opt('badge_'.$slug.'_name');
-					$notice .= '<div class="badge-notify notify">'.qa_lang('badges/badge_notify')."'".$name.'\'&nbsp;'.$number_text.'<span class="badge-profile-check">'.qa_lang('badges/badge_notify_profile_pre').'<a href="'.qa_path_html('user/'.qa_get_logged_in_handle(),array('tab'=>'badges'),qa_opt('site_url')).'">'.qa_lang('badges/badge_notify_profile').'</a></span><div class="notify-close" onclick="jQuery(this).parent().fadeOut()">&#10006;</div></div>';
-				}
+					if(count($result) == 1) {
+						$slug = $result[0];
+						$badge_name=qa_lang('badges/'.$slug);
+						if(!qa_opt('badge_'.$slug.'_name')) qa_opt('badge_'.$slug.'_name',$badge_name);
+						$name = qa_opt('badge_'.$slug.'_name');
+						
+						$notice .= '<div class="badge-notify notify">'.qa_lang('badges/badge_notify')."'".$name.'\'<span class="badge-profile-check">'.qa_lang('badges/badge_notify_profile_pre').'<a href="'.qa_path_html((QA_FINAL_EXTERNAL_USERS?qa_path_to_root():'').'user/'.qa_get_logged_in_handle(),array('tab'=>'badges'),qa_opt('site_url')).'">'.qa_lang('badges/badge_notify_profile').'</a></span><div class="notify-close" onclick="jQuery(this).parent().fadeOut()">&#10006;</div></div>';
+					}
+					else {
+						$number_text = count($result)>2?str_replace('#', count($result)-1, qa_lang('badges/badge_notify_multi_plural')):qa_lang('badges/badge_notify_multi_singular');
+						$slug = $result[0];
+						$badge_name=qa_lang('badges/'.$slug);
+						if(!qa_opt('badge_'.$slug.'_name')) qa_opt('badge_'.$slug.'_name',$badge_name);
+						$name = qa_opt('badge_'.$slug.'_name');
+						$notice .= '<div class="badge-notify notify">'.qa_lang('badges/badge_notify')."'".$name.'\'&nbsp;'.$number_text.'<span class="badge-profile-check">'.qa_lang('badges/badge_notify_profile_pre').'<a href="'.qa_path_html('user/'.qa_get_logged_in_handle(),array('tab'=>'badges'),qa_opt('site_url')).'">'.qa_lang('badges/badge_notify_profile').'</a></span><div class="notify-close" onclick="jQuery(this).parent().fadeOut()">&#10006;</div></div>';
+					}
 
 				$notice .= '</div>';
 				

@@ -503,7 +503,7 @@
 						// source row(s) if any	
 						if(is_array($oids)) {
 							$output .= '
-									<div class="badge-container-sources badge-source-'.$slug.'">
+									<div class="badge-container-sources badge-source-'.$slug.'" style="display: none;">
 										<div class="badge-wrapper-sources">
 											<h3>
 												<span class="badge-'.$types.'">'.qa_html($name).'</span><span class="badge-source-title-description">'.$desc.' ('.$typed.')</span>
@@ -542,7 +542,9 @@
 												}
 												$output .= '
 											</div>
-											<div class="badge-close-sbtn" onclick="jQuery(\'.badge-source-'.$slug.'\').removeClass(\'q2a-show-badge-source\')">✖</div>
+											<div class="close-badge-source-wrapper">
+												<div class="badge-close-sbtn" onclick="jQuery(\'.badge-source-'.$slug.'\').removeClass(\'q2a-show-badge-source\')">'.qa_lang('badges/close_badge_source').'</div>
+											</div>
 										</div>
 										<div class="badge-close-source" onclick="jQuery(\'.badge-source-'.$slug.'\').removeClass(\'q2a-show-badge-source\')"></div>
 									</div>';

@@ -95,7 +95,7 @@
 									</span>
 									<span class="wibabadge">
 										<a href="'.qa_path('').'badges#badge-anchor-'.$slug.'">
-											<span class="badge-'.$types.'" title="'.qa_html($name).'&#013;'.$desc.' ('.$typed.')">'.qa_html($name).'</span>
+											<span class="badge-'.$types.'" title="'.qa_html($name).' - '.$desc.' ('.$typed.')">'.qa_html($name).'</span>
 										</a>
 									</span>
 									<div class="clear" style="clear:both;"></div>

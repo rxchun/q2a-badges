@@ -58,9 +58,9 @@
 							$size
 						);
 					} elseif (qa_opt('avatar_allow_upload') && ($useraccount['flags'] & QA_USER_FLAGS_SHOW_AVATAR) && isset($useraccount['avatarblobid'])) {
-						$badgeAvatar = qa_path('image', array('qa_blobid' => $useraccount['avatarblobid'], 'qa_size' => $size), qa_path('site_url'), QA_URL_FORMAT_PARAMS); 
+						$badgeAvatar = qa_path('image', array('qa_blobid' => $useraccount['avatarblobid'], 'qa_size' => $size), qa_path(''), QA_URL_FORMAT_PARAMS); 
 					} elseif ((qa_opt('avatar_allow_gravatar') || qa_opt('avatar_allow_upload')) && qa_opt('avatar_default_show') && !empty($defaultBlobId)) {
-						$badgeAvatar = qa_path('image', array('qa_blobid' => qa_opt('avatar_default_blobid'), 'qa_size' => $size), qa_path('site_url'), QA_URL_FORMAT_PARAMS); 
+						$badgeAvatar = qa_path('image', array('qa_blobid' => qa_opt('avatar_default_blobid'), 'qa_size' => $size), qa_path(''), QA_URL_FORMAT_PARAMS); 
 					} else {
 						// QA_HTML_THEME_LAYER_URLTOROOT wasn't working. Check back later
 						$needle = '/qa-plugin';

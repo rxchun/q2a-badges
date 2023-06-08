@@ -51,21 +51,21 @@
 					$size = 35;
 					$defaultBlobId = qa_opt('avatar_default_blobid');
 					if (qa_opt('avatar_allow_gravatar') && ($useraccount['flags'] & QA_USER_FLAGS_SHOW_GRAVATAR)) {
-						$OGimg = sprintf(
+						$badgeAvatar = sprintf(
 							'%s://www.gravatar.com/avatar/%s?s=%s',
 							qa_is_https_probably() ? 'https' : 'http',
 							md5(strtolower(trim($useraccount['email']))),
 							$size
 						);
 					} elseif (qa_opt('avatar_allow_upload') && ($useraccount['flags'] & QA_USER_FLAGS_SHOW_AVATAR) && isset($useraccount['avatarblobid'])) {
-						$OGimg = qa_path('image', array('qa_blobid' => $useraccount['avatarblobid'], 'qa_size' => $size), qa_opt('site_url'), QA_URL_FORMAT_PARAMS); 
+						$badgeAvatar = qa_path('image', array('qa_blobid' => $useraccount['avatarblobid'], 'qa_size' => $size), qa_path('site_url'), QA_URL_FORMAT_PARAMS); 
 					} elseif ((qa_opt('avatar_allow_gravatar') || qa_opt('avatar_allow_upload')) && qa_opt('avatar_default_show') && !empty($defaultBlobId)) {
-						$OGimg = qa_path('image', array('qa_blobid' => qa_opt('avatar_default_blobid'), 'qa_size' => $size), qa_opt('site_url'), QA_URL_FORMAT_PARAMS); 
+						$badgeAvatar = qa_path('image', array('qa_blobid' => qa_opt('avatar_default_blobid'), 'qa_size' => $size), qa_path('site_url'), QA_URL_FORMAT_PARAMS); 
 					} else {
-						// QA_HTML_THEME_LAYER_URLTOROOT won't work. Check back later
+						// QA_HTML_THEME_LAYER_URLTOROOT wasn't working. Check back later
 						$needle = '/qa-plugin';
 						$pluginURL = substr(__DIR__, strpos(__DIR__, $needle) + strlen($needle));
-						$OGimg = qa_opt('site_url') .'qa-plugin/'. $pluginURL . '/images/default-avatar-35.png';
+						$badgeAvatar = qa_opt('site_url') .'qa-plugin/'. $pluginURL . '/images/default-avatar-35.png';
 					}
 					
 					// Badge Awarded Time
@@ -76,7 +76,7 @@
 								<div class="badge-awarded-header">
 									<div class="badge-awarded-awatar">
 										<a href="'.qa_path('user').'/'. $badgeHandle .'">
-											<img src="'. $OGimg .'" alt="Awarded Badge User Avatar" width="35" height="35">
+											<img src="'. $badgeAvatar .'" alt="Awarded Badge User Avatar" width="35" height="35">
 										</a>
 									</div>
 									<div class="badge-awarded-info">
@@ -95,7 +95,7 @@
 									</span>
 									<span class="wibabadge">
 										<a href="'.qa_path('').'badges#badge-anchor-'.$slug.'">
-											<span class="badge-'.$types.'" title="'.$desc.' ('.$typed.')">'.qa_html($name).'</span>
+											<span class="badge-'.$types.'" title="'.qa_html($name).'&#013;'.$desc.' ('.$typed.')">'.qa_html($name).'</span>
 										</a>
 									</span>
 									<div class="clear" style="clear:both;"></div>

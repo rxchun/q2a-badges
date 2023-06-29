@@ -131,8 +131,8 @@
 			// only load Styles if enabled
 			if (qa_opt('badge_active')) {
 				$this->output('
-					<link rel="preload" as="style" href="'.QA_HTML_THEME_LAYER_URLTOROOT.'css/badges-styles.css?v='.$patchNumber.'" onload="this.onload=null;this.rel=\'stylesheet\'">
-					<noscript><link rel="stylesheet" href="'.QA_HTML_THEME_LAYER_URLTOROOT.'css/badges-styles.css?v='.$patchNumber.'"></noscript>
+					<link rel="preload" as="style" href="'.QA_HTML_THEME_LAYER_URLTOROOT.'css/badges-styles.min.css?v='.$patchNumber.'" onload="this.onload=null;this.rel=\'stylesheet\'">
+					<noscript><link rel="stylesheet" href="'.QA_HTML_THEME_LAYER_URLTOROOT.'css/badges-styles.min.css?v='.$patchNumber.'"></noscript>
 				');
 			}
 			// add RTL CSS file

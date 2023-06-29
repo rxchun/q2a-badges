@@ -15,12 +15,12 @@
 					if(!isset($this->content['navigation']['sub'])) {
 						$this->content['navigation']['sub'] = array(
 							'profile' => array(
-								'url' => qa_path_html('user/'.$this->_user_handle(), null, qa_opt('site_url')),
+								'url' => qa_path_html('user/'.$this->_user_handle(), null, qa_path('')),
 								'label' => $this->_user_handle(),
 								'selected' => !qa_get('tab')?true:false
 							),
 							'badges' => array(
-								'url' => qa_path_html('user/'.$this->_user_handle(), array('tab'=>'badges'), qa_opt('site_url')),
+								'url' => qa_path_html('user/'.$this->_user_handle(), array('tab'=>'badges'), qa_path('')),
 								'label' => qa_lang('badges/badges'),
 								'selected' => qa_get('tab')=='badges'?true:false
 							),
@@ -28,7 +28,7 @@
 					}
 					else {
 						$this->content['navigation']['sub']['badges'] = array(
-							'url' => qa_path_html('user/'.$this->_user_handle(), array('tab'=>'badges'), qa_opt('site_url')),
+							'url' => qa_path_html('user/'.$this->_user_handle(), array('tab'=>'badges'), qa_path('')),
 							'label' => qa_lang('badges/badges'),
 							'selected' => qa_get('tab')=='badges'?true:false
 						);
@@ -123,7 +123,7 @@
 			qa_html_theme_base::head_custom();
 			
 			// Patch Version
-			$patchNumber = '39';
+			$patchNumber = '46';
 			
 			if(!qa_opt('badge_active'))
 				return;
@@ -159,13 +159,15 @@
 			if (qa_opt('badge_active') && $this->template != 'admin') {
 				$this->output("
 				<script>
-					// Handle document Z indexes for dark pane
-					jQuery(document).on('click', '.badge-count-link', function () {
-						jQuery('.leftPanel, .qa-header').addClass('zindex1');
-					});
-					
-					jQuery(document).on('click', '.badge-close-source, .badge-close-sbtn', function () {
-						jQuery('.leftPanel, .qa-header').removeClass('zindex1');
+					jQuery(document).ready(() => {
+						// Handle document Z indexes for dark pane
+						jQuery(document).on('click', '.badge-count-link', function () {
+							jQuery('.leftPanel, .qa-header').addClass('zindex1');
+						});
+						
+						jQuery(document).on('click', '.badge-close-source, .badge-close-sbtn', function () {
+							jQuery('.leftPanel, .qa-header').removeClass('zindex1');
+						});
 					});
 				</script>
 				");
@@ -175,20 +177,23 @@
 			if (qa_opt('badge_active') && $this->template == 'user') {
 				$this->output("
 				<script>
-					// Badges plugin Scroll DOM on earned badge
-					if (window.location.href.indexOf('badges') > -1) {
-						$([document.documentElement, document.body]).animate({
-							scrollTop: $('body.qa-template-user div.qa-part-form-badges-list').offset().top
-						}, 500);
-					}
+					jQuery(document).ready(() => {
+						// Badges plugin Scroll DOM on earned badge
+						if (window.location.href.indexOf('badges') > -1) {
+							$([document.documentElement, document.body]).animate({
+								scrollTop: $('body.qa-template-user div.qa-part-form-badges-list').offset().top
+							}, 500);
+						}
+					});
 				</script>
 				");
 			}
 			
 			if ($this->request == 'admin/plugins' && qa_get_logged_in_level() >= QA_USER_LEVEL_ADMIN) {
 				$this->output("
-				<script>".(qa_opt('badge_notify_time') != '0'?"
-					jQuery('document').ready(function() { jQuery('.notify-container').delay(".((int)qa_opt('badge_notify_time')*1000).").fadeOut('fast'); });":"")."
+				<script>
+					".(qa_opt('badge_notify_time') != '0'?"
+					jQuery(document).ready(() => { jQuery('.notify-container').delay(".((int)qa_opt('badge_notify_time')*1000).").fadeOut('fast'); });":"")."
 					function badgeEdit(slug,end) {
 						if(end) {
 							jQuery('#badge_'+slug+'_edit').hide();
@@ -203,8 +208,9 @@
 				</script>");
 			} else if (isset($this->badge_notice)) {
 				$this->output("
-				<script>".(qa_opt('badge_notify_time') != '0'?"
-					jQuery('document').ready(function() { jQuery('.notify-container').delay(".((int)qa_opt('badge_notify_time')*1000).").fadeOut('fast'); });":"")."
+				<script>
+					".(qa_opt('badge_notify_time') != '0'?"
+					jQuery(document).ready(() => { jQuery('.notify-container').delay(".((int)qa_opt('badge_notify_time')*1000).").fadeOut('fast'); });":"")."
 				</script>");
 			}
 			
@@ -363,7 +369,7 @@
 						if(!qa_opt('badge_'.$slug.'_name')) qa_opt('badge_'.$slug.'_name',$badge_name);
 						$name = qa_opt('badge_'.$slug.'_name');
 						
-						$notice .= '<div class="badge-notify notify">'.qa_lang('badges/badge_notify')."'".$name.'\'<span class="badge-profile-check">'.qa_lang('badges/badge_notify_profile_pre').'<a href="'.qa_path_html((QA_FINAL_EXTERNAL_USERS?qa_path_to_root():'').'user/'.qa_get_logged_in_handle(),array('tab'=>'badges'),qa_opt('site_url')).'">'.qa_lang('badges/badge_notify_profile').'</a></span><div class="notify-close" onclick="jQuery(this).parent().fadeOut()">&#10006;</div></div>';
+						$notice .= '<div class="badge-notify notify">'.qa_lang('badges/badge_notify')."'".$name.'\'<span class="badge-profile-check">'.qa_lang('badges/badge_notify_profile_pre').'<a href="'.qa_path_html((QA_FINAL_EXTERNAL_USERS?qa_path_to_root():'').'user/'.qa_get_logged_in_handle(),array('tab'=>'badges'),qa_path('')).'">'.qa_lang('badges/badge_notify_profile').'</a></span><div class="notify-close" onclick="jQuery(this).parent().fadeOut()">&#10006;</div></div>';
 					}
 					else {
 						$number_text = count($result)>2?str_replace('#', count($result)-1, qa_lang('badges/badge_notify_multi_plural')):qa_lang('badges/badge_notify_multi_singular');
@@ -371,7 +377,7 @@
 						$badge_name=qa_lang('badges/'.$slug);
 						if(!qa_opt('badge_'.$slug.'_name')) qa_opt('badge_'.$slug.'_name',$badge_name);
 						$name = qa_opt('badge_'.$slug.'_name');
-						$notice .= '<div class="badge-notify notify">'.qa_lang('badges/badge_notify')."'".$name.'\'&nbsp;'.$number_text.'<span class="badge-profile-check">'.qa_lang('badges/badge_notify_profile_pre').'<a href="'.qa_path_html('user/'.qa_get_logged_in_handle(),array('tab'=>'badges'),qa_opt('site_url')).'">'.qa_lang('badges/badge_notify_profile').'</a></span><div class="notify-close" onclick="jQuery(this).parent().fadeOut()">&#10006;</div></div>';
+						$notice .= '<div class="badge-notify notify">'.qa_lang('badges/badge_notify')."'".$name.'\'&nbsp;'.$number_text.'<span class="badge-profile-check">'.qa_lang('badges/badge_notify_profile_pre').'<a href="'.qa_path_html('user/'.qa_get_logged_in_handle(),array('tab'=>'badges'),qa_path('')).'">'.qa_lang('badges/badge_notify_profile').'</a></span><div class="notify-close" onclick="jQuery(this).parent().fadeOut()">&#10006;</div></div>';
 					}
 
 				$notice .= '</div>';
@@ -389,7 +395,7 @@
 	// etc
 		
 		function trigger_notify($message) {
-			$notice = '<div class="notify-container"><div class="badge-notify notify">'.qa_lang('badges/badge_notify')."'".$message.'\'!<span class="badge-profile-check">'.qa_lang('badges/badge_notify_profile_pre').'<a href="/user/'.qa_get_logged_in_handle().'">'.qa_lang('badges/badge_notify_profile').'</a></span><div class="notify-close" onclick="jQuery(this).parent().parent().fadeOut()">&#10006;</div></div></div>';
+			$notice = '<div class="notify-container"><div class="badge-notify notify">'.qa_lang('badges/badge_notify')."'".$message.'\'!<span class="badge-profile-check">'.qa_lang('badges/badge_notify_profile_pre').'<a href="'.qa_path('').'user/'.qa_get_logged_in_handle().'">'.qa_lang('badges/badge_notify_profile').'</a></span><div class="notify-close" onclick="jQuery(this).parent().parent().fadeOut()">&#10006;</div></div></div>';
 			$this->output($notice);
 		}
 		

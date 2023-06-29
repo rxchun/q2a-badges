@@ -255,7 +255,7 @@
 
 		$body = preg_replace('/\^if_post_text="([^"]*)"/',($oid?'$1':''),$body); // if post text
 		
-		$site_url = qa_opt('site_url');
+		$site_url = qa_path('');
 		$profile_url = qa_path_html('user/'.$handle, null, $site_url);
 		
 
@@ -289,11 +289,11 @@
 				$anchor = urlencode(qa_anchor($post['basetype'], $oid));
 
 				$post_title = $parent['title'];
-				$post_url = qa_path_html(qa_q_request($parent['postid'], $parent['title']), null, qa_opt('site_url'),null, $anchor);
+				$post_url = qa_path_html(qa_q_request($parent['postid'], $parent['title']), null, qa_path(''),null, $anchor);
 			}
 			else {
 				$post_title = $post['title'];
-				$post_url = qa_path_html(qa_q_request($post['postid'], $post['title']), null, qa_opt('site_url'));
+				$post_url = qa_path_html(qa_q_request($post['postid'], $post['title']), null, qa_path(''));
 			}
 
 		}
@@ -535,7 +535,7 @@
 													if(qa_strlen($text) === 0){
 														$text = '<span>'.qa_lang('badges/badge_empty_source').'</span>';
 													} else {
-														$text = '<a href="'.qa_path_html(qa_q_request($oid,$title),NULL,qa_opt('site_url')).($anchor?'#'.$anchor:'').'">'.qa_html($text).'</a>';
+														$text = '<a href="'.qa_path_html(qa_q_request($oid,$title),NULL,qa_path('')).($anchor?'#'.$anchor:'').'">'.qa_html($text).'</a>';
 													}
 													
 													$output .= '<div class="badge-source">'. $text .'</div>';

@@ -197,7 +197,7 @@
 		
 		'badge_list_pre'=>'The following is a list of all badges available on this site:',
 		'awarded'=>'awarded',
-		'awarded_total'=>'awarded to the community',
+		'awarded_total'=>'awarded to the community.',
 		'badges_total'=>'total badges',
 		
 		'badge_notify'=>'Congratulations!  You\'ve earned a badge ',

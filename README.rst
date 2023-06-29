@@ -3,6 +3,24 @@ Question2Answer Badges (Extended version)
 ==============================
 
 -----------
+5.2.2
+-----------
+
+- Swapped JS algorithm to group badges by type, to a PHP solution.
+  (To reduce Javascript implementation.)
+- JS code improvements.
+- Structural Work.
+
+-----------
+5.2
+-----------
+
+- New widget design
+- Added id tags to Badges Page to serve as link anchors.
+  For example, if you click in a widget badge now, you get redirected and scrolled to that Badge's location in the Badges Page.
+- Some other Tweaks
+
+-----------
 5.0
 -----------
 

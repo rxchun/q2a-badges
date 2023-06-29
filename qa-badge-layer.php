@@ -159,6 +159,7 @@
 			if (qa_opt('badge_active') && $this->template != 'admin') {
 				$this->output("
 				<script>
+					// Q2A Badges
 					jQuery(document).ready(() => {
 						// Handle document Z indexes for dark pane
 						jQuery(document).on('click', '.badge-count-link', function () {
@@ -177,6 +178,7 @@
 			if (qa_opt('badge_active') && $this->template == 'user') {
 				$this->output("
 				<script>
+					// Q2A Badges
 					jQuery(document).ready(() => {
 						// Badges plugin Scroll DOM on earned badge
 						if (window.location.href.indexOf('badges') > -1) {
@@ -192,6 +194,7 @@
 			if ($this->request == 'admin/plugins' && qa_get_logged_in_level() >= QA_USER_LEVEL_ADMIN) {
 				$this->output("
 				<script>
+					// Q2A Badges
 					".(qa_opt('badge_notify_time') != '0'?"
 					jQuery(document).ready(() => { jQuery('.notify-container').delay(".((int)qa_opt('badge_notify_time')*1000).").fadeOut('fast'); });":"")."
 					function badgeEdit(slug,end) {
@@ -209,6 +212,7 @@
 			} else if (isset($this->badge_notice)) {
 				$this->output("
 				<script>
+					// Q2A Badges
 					".(qa_opt('badge_notify_time') != '0'?"
 					jQuery(document).ready(() => { jQuery('.notify-container').delay(".((int)qa_opt('badge_notify_time')*1000).").fadeOut('fast'); });":"")."
 				</script>");

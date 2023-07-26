@@ -27,9 +27,9 @@
 				while ( ($badge=qa_db_read_one_assoc($badges,true)) !== null ) {
 					$params = array();
 					
-					$paramsa = explode("\t",$badge['params']);
+					$paramsa = explode("\t",$badge['params'] ?? '');
 					foreach($paramsa as $param) {
-						$parama = explode('=',$param);
+						$parama = explode('=',$param ?? '');
 						$params[$parama[0]]=$parama[1];
 					}
 					
@@ -64,7 +64,7 @@
 					} else {
 						// QA_HTML_THEME_LAYER_URLTOROOT wan't working. Check back later
 						$needle = '/qa-plugin';
-						$pluginURL = substr(__DIR__, strpos(__DIR__, $needle) + strlen($needle));
+						$pluginURL = substr(__DIR__, strpos(__DIR__, $needle) + strlen($needle ?? ''));
 						$badgeAvatar = qa_path('') .'qa-plugin/'. $pluginURL . '/images/default-avatar-35.png';
 					}
 					

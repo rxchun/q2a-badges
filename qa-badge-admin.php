@@ -395,7 +395,6 @@ You may cancel these notices at any time by visiting your profile at the link ab
 
 			return array(
 				'ok' => ($ok && !isset($error)) ? $ok : null,
-				'tags' => 'class="save-badges-options"',
 				'fields' => $fields,
 				'buttons' => array(
 					array(

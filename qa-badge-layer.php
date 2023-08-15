@@ -123,7 +123,7 @@
 			qa_html_theme_base::head_custom();
 			
 			// Patch Version
-			$patchNumber = '46';
+			$patchNumber = '47';
 			
 			if(!qa_opt('badge_active'))
 				return;
@@ -143,11 +143,12 @@
 				');
 			}
 			
-			if (qa_opt('badge_active') && $this->template != 'admin')
+			if (qa_opt('badge_active') && $this->template != 'admin') {
 				$this->badge_notify();
+			}
 
 			// Added fix to remove empty <style> in <head>
-			if (qa_opt('badges_css') != null){
+			if (qa_opt('badges_css') != null) {
 				$this->output('<style>',qa_opt('badges_css'),'</style>');
 			}
 		}

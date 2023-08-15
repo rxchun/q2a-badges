@@ -34,7 +34,7 @@
 	display: inline-block;
     margin-right: 8px;
     border-radius: 50%;
-    vertical-align: middle;
+    /* vertical-align: middle; */
 }
 
 .badge-bronze:before {
@@ -142,6 +142,7 @@ table.badge-entry, table.badge-entry-row {
 
 .badge-entry-badge td:first-of-type {
     width: 25%;
+	padding: 0;
 }
 .badge-entry-badge td:nth-child(2) {
     width: 60%;
@@ -160,8 +161,9 @@ table.badge-entry, table.badge-entry-row {
 
 
 .badgeGroup {
-    border-top: 1px solid #E0E0E0;
-    padding: .6rem 0;
+	/* padding: .6rem 0; */
+	padding:0.6rem 1rem;
+	border-top: 1px solid #E0E0E0;
 	max-width: 100%;
 }
 

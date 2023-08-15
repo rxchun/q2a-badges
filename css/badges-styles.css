@@ -161,10 +161,14 @@ table.badge-entry, table.badge-entry-row {
 
 
 .badgeGroup {
-	/* padding: .6rem 0; */
-	padding:0.6rem 1rem;
+	padding: .6rem 0;
 	border-top: 1px solid #E0E0E0;
 	max-width: 100%;
+}
+@media (min-width: 630px){
+	.badgeGroup {
+		padding:0.6rem 1rem;
+	}
 }
 
 .badge-divider {

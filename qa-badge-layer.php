@@ -122,11 +122,11 @@
 		function head_custom() {
 			qa_html_theme_base::head_custom();
 			
-			// Patch Version
-			$patchNumber = '48';
-			
 			if(!qa_opt('badge_active'))
 				return;
+			
+			// Patch Version
+			$patchNumber = '49';
 
 			// only load Styles if enabled
 			if (qa_opt('badge_active')) {

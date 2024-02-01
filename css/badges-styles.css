@@ -41,21 +41,30 @@
 	background-color: #b3934e;
 }
 .badge-silver:before {
-	background-color: #B4B8BC;
+	background-color: #ababab;
 }
 .badge-gold:before {
 	background-color: #FFCC01;
 }
 
 /* single dot */
-.badge-bronze-medal {
-    color: #b3934e;
+.badge-bronze-count:before, .badge-silver-count:before, .badge-gold-count:before {
+    content: "";
+    display: inline-block;
+    width: 7px;
+    height: 7px;
+    background-color: #000;
+    border-radius: 10px;
+    margin: 1px;
 }
-.badge-silver-medal {
-    color: #CDCDCD;
+.badge-bronze-count:before {
+    background-color: #b3934e;
 }
-.badge-gold-medal {
-    color: #FFCC01;
+.badge-silver-count:before {
+    background-color: #ababab;
+}
+.badge-gold-count:before {
+    background-color: #FFCC01;
 }
 
 .badge-bronze br, .badge-silver br, .badge-gold br {

@@ -424,7 +424,7 @@
 				$types = $type['slug'];
 				$typed = $type['name'];
 
-				$output.='<span class="badge-pointer badge-pointer-'.$typed.'" title="'.$count.' '.$typed.'"><span class="badge-'.$types.'-medal">●</span><span class="badge-'.$types.'-count">'.$count.'</span></span> ';
+				$output.='<span class="badge-pointer badge-pointer-'.$typed.'" title="'.$count.' '.$typed.'"><span class="badge-'.$types.'-count">'.$count.'</span></span> ';
 			}
 			$output = substr($output,0,-1);  // lazy remove space
 			$output.='</span>';
@@ -509,6 +509,7 @@
 												<span class="badge-'.$types.'">'.qa_html($name).'</span><span class="badge-source-title-description">'.$desc.' ('.$typed.')</span>
 											</h3>
 											<div class="badge-wrapperToo-sources">';
+												$oids = array_reverse($oids);  // Fix order - Newest to Oldest badge
 												foreach($oids as $oid) {
 													$post = qa_db_select_with_pending(
 														qa_db_full_post_selectspec(null, $oid)

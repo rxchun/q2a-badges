@@ -107,7 +107,7 @@
 									if (QA_FINAL_EXTERNAL_USERS) {
 										$handles=qa_get_public_from_userids(array($uid));
 										$handle=@$handles[$uid];
-									} 
+									}
 									else {
 										$useraccount=qa_db_select_with_pending(
 											qa_db_user_account_selectspec($uid, true)
@@ -117,7 +117,7 @@
 
 									if(!$handle) continue;
 
-									$users[] = '<a href="'.qa_path_html('user/'.$handle).'">'.$handle.'</a>'.($ucount>1?' x'.$ucount:'');
+									$users[] = '<a href="'.qa_path_html('user/'.$handle).'">'.$handle.'</a>' . ($ucount>1?' x'.$ucount:'');
 								}
 								$qa_content['custom'.$c] .= '
 								<span class="badge-who-received">

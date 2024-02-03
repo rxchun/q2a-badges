@@ -3,7 +3,8 @@
 	class qa_html_theme_layer extends qa_html_theme_base {
 
 	// init before start
-
+	public $badge_notice;
+	
 		function doctype() {
 				
 			qa_html_theme_base::doctype();

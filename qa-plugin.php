@@ -2,13 +2,13 @@
 
 /*
 	Plugin Name: Q2A Badges
-	Plugin URI: https://github.com/heliochun/q2a-badges
+	Plugin URI: https://github.com/rxchun/q2a-badges
 	Plugin Description: This is a plugin for Question2Answer that provides basic badge functionality.
 	Plugin Version: 4.9
 	Plugin Date: 2017-10-14
 	Plugin License: GPLv3+
 	Plugin Minimum Question2Answer Version: 1.7
-	Plugin Update Check URI: https://raw.githubusercontent.com/heliochun/q2a-badges/master/metadata.json
+	Plugin Update Check URI: https://raw.githubusercontent.com/rxchun/q2a-badges/master/metadata.json
 	
 	Plugin Author: NoahY
 	

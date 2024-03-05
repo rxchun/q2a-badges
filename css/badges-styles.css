@@ -1,10 +1,10 @@
 /*
-	Plugin Name: Badges Q2A
-	Plugin URI: https://github.com/heliochun/q2a-badges
-	Plugin Version: 5.1
+	Plugin Name:Badges Q2A
+	Plugin URI:https://github.com/rxchun/q2a-badges
+	Plugin Version:5.1
 	
-	Extension Author: Chun (Gold Developer)
-	Extension Author URI: https://heliochun.github.io/?ref=q2a-badges-github
+	Extension Author:Chun (Gold Developer)
+	Extension Author URI:https://rxchun.github.io/?ref=q2a-badges-github
 */
 
 .badge-bronze, .badge-silver, .badge-gold {
@@ -93,7 +93,8 @@
 	z-index: 99999999;
 }
 .badge-notify {
-    padding: 10px 40px 10px 25px;
+    display: flex;
+	padding: 1rem 0rem 1rem 2rem;
     text-align: left;
     background-color: #424242;
 	font-family: inherit;
@@ -112,11 +113,11 @@
 }
 
 .notify-close {
-    position: absolute;
-    top: 4px;
-    right: 10px;
-    color: #90CAF9;
-    font-weight: 600;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: nowrap;
+    width: 50px;
     cursor: pointer;
 }
 
@@ -482,4 +483,9 @@ span.wibawhat-timestamp {
 		right: 8px;
 		bottom: 8px;
 	}
+	
+	.badge-notify {
+		padding: 1rem 0rem 1rem 1rem;
+	}
+	
 }

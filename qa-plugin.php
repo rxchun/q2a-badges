@@ -12,7 +12,7 @@
 	
 	Plugin Author: NoahY
 	
-	Extension Author: Helio Chun (Gold Developer)
+	Extension Author: Chun (Gold Developer)
 	Extension Author URI: https://twitter.com/TweetChun
 */
 

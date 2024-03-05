@@ -65,7 +65,7 @@
 						// QA_HTML_THEME_LAYER_URLTOROOT wan't working. Check back later
 						$needle = '/qa-plugin';
 						$pluginURL = substr(__DIR__, strpos(__DIR__, $needle) + strlen($needle ?? ''));
-						$badgeAvatar = qa_path('') .'qa-plugin/'. $pluginURL . '/images/default-avatar-35.png';
+						$badgeAvatar = qa_path('') .'qa-plugin'. $pluginURL . '/images/default-avatar-35.png';
 					}
 					
 					// Badge Awarded Time

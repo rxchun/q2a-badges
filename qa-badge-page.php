@@ -41,7 +41,7 @@
 			$totalawarded = 0;
 			
 			$qa_content['custom']='<em>'.qa_lang('badges/badge_list_pre').'</em><br />';
-			$qa_content['custom2']='';
+			$qa_content['custom2']='<table class="badge-entry-row badge-entry-row-title"><tr><td>'.qa_lang('badges/badge_name').'</td><td>'.qa_lang('badges/badge_description').'</td><td>'.qa_lang('badges/awarded').'</td></tr></table>';
 			$c = 2;
 			
 			$result = qa_db_read_all_assoc(
@@ -84,7 +84,7 @@
 				$isBronzeClosure = ($types == 'bronze' && $badgeCheckRepeated == '') ? '<div class="badgeGroup">' : '';
 				
 				
-				$qa_content['custom'.$c].= $isBronzeLoopClosure . $isBronzeOpen . '<table class="badge-entry-row entry-'.$types.'"><tr id="badge-anchor-'.$slug.'" class="badge-entry-badge"><td><span class="badge-'.$types.'" title="'.$typen.'">'.$name.'</span></td> <td><span class="badge-entry-desc">'.$desc.'</span></td>'.(isset($count[$slug])?' <td><span title="'.$count[$slug]['count'].' '.qa_lang('badges/awarded').'" class="badge-count-link" onclick="jQuery(\'#badge-users-'.$slug.'\').toggleClass(\'q2a-show-badge-source\')">x'.$count[$slug]['count'].'</span></td>':'<td><span class="badge-count">0</span></td>').'</tr>';
+				$qa_content['custom'.$c].= $isBronzeLoopClosure . $isBronzeOpen . '<table class="badge-entry-row entry-'.$types.'"><tr id="badge-anchor-'.$slug.'" class="badge-entry-badge"><td><span class="badge-'.$types.'" title="'.$typen.'">'.$name.'</span></td> <td><span class="badge-entry-desc">'.$desc.'</span></td>'.(isset($count[$slug])?' <td><span title="'.$count[$slug]['count'].' '.qa_lang('badges/awarded').'" class="badge-count-link" onclick="jQuery(\'#badge-users-'.$slug.'\').toggleClass(\'q2a-show-badge-source\')">'.$count[$slug]['count'].'x</span></td>':'<td><span class="badge-count">0</span></td>').'</tr>';
 				
 				// source users
 
@@ -117,7 +117,7 @@
 
 									if(!$handle) continue;
 
-									$users[] = '<span class="badge-who-received"><a href="'.qa_path_html('user/'.$handle).'">'.$handle.'</a></span>' . ($ucount>1?' x'.$ucount:'');
+									$users[] = '<span class="badge-who-received"><a href="'.qa_path_html('user/'.$handle).'">'.$handle.'</a>'.($ucount>1?' '.$ucount.'x':'').'</span>';
 								}
 								$qa_content['custom'.$c] .= 
 								implode('',$users) .'

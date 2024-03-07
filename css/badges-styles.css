@@ -145,6 +145,12 @@ td.badge-user-table {
     font-size: 20px;
 }
 
+.badge-entry-row-title {
+    font-weight: 500;
+}
+.badge-entry-row-title td {
+    padding: 0.5rem 0;
+}
 
 .badge-entry, .badge-entry-row {
     width: 100%;
@@ -154,9 +160,11 @@ td.badge-user-table {
     width: 25%;
 	padding: 0;
 }
+.badge-entry-row-title td:nth-child(2),
 .badge-entry-badge td:nth-child(2) {
     width: 60%;
 }
+.badge-entry-row-title td:nth-child(3),
 .badge-entry-badge td:nth-child(3) {
     width: 15%;
 	text-align: right;

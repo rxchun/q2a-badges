@@ -196,6 +196,8 @@
 		'badge_count_click'=>'Click to see source(s)',
 		
 		'badge_list_pre'=>'The following is a list of all badges available on this site:',
+		'badge_name'=>'Badge name',
+		'badge_description'=>'Badge description',
 		'awarded'=>'awarded',
 		'awarded_total'=>'awarded to the community.',
 		'badges_total'=>'total badges',

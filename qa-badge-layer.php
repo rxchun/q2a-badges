@@ -127,7 +127,7 @@
 				return;
 			
 			// Patch Version
-			$patchNumber = '53';
+			$patchNumber = '54';
 
 			// only load Styles if enabled
 			if (qa_opt('badge_active')) {

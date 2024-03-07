@@ -76,7 +76,7 @@
 								<div class="badge-awarded-header">
 									<div class="badge-awarded-awatar">
 										<a href="'.qa_path('user').'/'. $badgeHandle .'" class="qa-avatar-link">
-											<img class="qa-avatar-image" width="35" height="35" src="'. $badgeAvatar .'" alt="Awarded Badge User Avatar">
+											<img class="qa-avatar-image qa-lazy-img" width="35" height="35" data-src="'. $badgeAvatar .'" src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" alt="Awarded Badge User Avatar">
 										</a>
 									</div>
 									<div class="badge-awarded-info">

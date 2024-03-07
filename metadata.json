@@ -2,7 +2,7 @@
     "name": "Badges Q2A",
     "uri": "https://github.com/rxchun/q2a-badges",
     "description": "This is a plugin for Question2Answer that provides basic badge functionality.",
-    "version": "5.2.9",
+    "version": "5.2.10",
     "date": "2022-06-16",
     "author": "NoahY (extended by Chun)",
     "author_uri": "https://rxchun.github.io/?ref=q2a-badges-github",

@@ -383,7 +383,7 @@
 						$badge_name=qa_lang('badges/'.$slug);
 						if(!qa_opt('badge_'.$slug.'_name')) qa_opt('badge_'.$slug.'_name',$badge_name);
 						$name = qa_opt('badge_'.$slug.'_name');
-						$notice .= '<div class="badge-notify notify"><div class="badge-notify-text">'.qa_lang('badges/badge_notify')."'".$name.'\'&nbsp;'.$number_text.'<span class="badge-profile-check">'.qa_lang('badges/badge_notify_profile_pre').'<a href="'.qa_path_html('user/'.qa_get_logged_in_handle(),array('tab'=>'badges'),qa_path('')).'">'.qa_lang('badges/badge_notify_profile').'</a></span></div><div class="notify-close" onclick="jQuery(this).parent().fadeOut()">&#x2715;;</div></div>';
+						$notice .= '<div class="badge-notify notify"><div class="badge-notify-text">'.qa_lang('badges/badge_notify')."'".$name.'\'&nbsp;'.$number_text.'<span class="badge-profile-check">'.qa_lang('badges/badge_notify_profile_pre').'<a href="'.qa_path_html('user/'.qa_get_logged_in_handle(),array('tab'=>'badges'),qa_path('')).'">'.qa_lang('badges/badge_notify_profile').'</a></span></div><div class="notify-close" onclick="jQuery(this).parent().fadeOut()">&#x2715;</div></div>';
 					}
 
 				$notice .= '</div>';

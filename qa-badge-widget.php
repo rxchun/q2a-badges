@@ -70,7 +70,7 @@
 					
 					// Badge Awarded Time
 					$awardedTime = qa_time_to_string(qa_opt('db_time') - $badge['datetime']) . ' ' . qa_lang('badges/widget_badge_earned_ago');
-					$badgeHandle = str_replace(' ', '+', $badge['handle']); // Fix white space. Code validation
+					$badgeHandle = str_replace(' ', '%20', $badge['handle']); // Fix white space. Code validation
 					
 					$string = '<div class="badge-awarded">
 								<div class="badge-awarded-header">

@@ -48,7 +48,7 @@
 					
 					$handle = $badge['handle'];
 					$useraccount = qa_db_single_select(qa_db_user_account_selectspec($handle, false));
-					$size = 35;
+					$size = 100;
 					$defaultBlobId = qa_opt('avatar_default_blobid');
 					if (qa_opt('avatar_allow_gravatar') && ($useraccount['flags'] & QA_USER_FLAGS_SHOW_GRAVATAR)) {
 						$badgeAvatar = sprintf(
@@ -72,11 +72,18 @@
 					$awardedTime = qa_time_to_string(qa_opt('db_time') - $badge['datetime']) . ' ' . qa_lang('badges/widget_badge_earned_ago');
 					$badgeHandle = str_replace(' ', '%20', $badge['handle']); // Fix white space. Code validation
 					
+					$imgSrcType = '';
+					if(qa_opt('site_theme')=='Polaris') {
+						$imgSrcType = 'data-src="'. $badgeAvatar .'" src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs="';
+					} else {
+						$imgSrcType = 'src="'. $badgeAvatar .'"';
+					}
+					
 					$string = '<div class="badge-awarded">
 								<div class="badge-awarded-header">
 									<div class="badge-awarded-awatar">
 										<a href="'.qa_path('user').'/'. $badgeHandle .'" class="qa-avatar-link">
-											<img class="qa-avatar-image qa-lazy-img" width="35" height="35" data-src="'. $badgeAvatar .'" src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" alt="Awarded Badge User Avatar">
+											<img class="qa-avatar-image qa-lazy-img" width="35" height="35" '.$imgSrcType.' alt="Awarded Badge User Avatar">
 										</a>
 									</div>
 									<div class="badge-awarded-info">

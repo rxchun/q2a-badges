@@ -48,7 +48,7 @@
 					
 					$handle = $badge['handle'];
 					$useraccount = qa_db_single_select(qa_db_user_account_selectspec($handle, false));
-					$size = 100;
+					$size = 70;
 					$defaultBlobId = qa_opt('avatar_default_blobid');
 					if (qa_opt('avatar_allow_gravatar') && ($useraccount['flags'] & QA_USER_FLAGS_SHOW_GRAVATAR)) {
 						$badgeAvatar = sprintf(

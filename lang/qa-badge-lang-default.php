@@ -247,7 +247,7 @@
 		'badge_email_notify_on'=>'Email notification on by default',
 		'badge_email_subject'=>'Message subject',
 		'badge_email_body'=>'Message body',
-		'badge_notify_email_me'=>'Notify of new badges by email?',
+		'badge_notify_email_me'=>'Notify me of new badges by email?',
 		'badge_notified_email_me'=>'Notification settings saved.',
 		
 		'badge_widget_title' => 'Recent Badges',

@@ -32,7 +32,7 @@
 
 	qa_register_plugin_layer('qa-badge-layer.php', 'Badge Notification Layer');	
 
-	qa_register_plugin_phrases('qa-badge-lang-*.php', 'badges');
+	qa_register_plugin_phrases('lang/qa-badge-lang-*.php', 'badges');
 	
 	function qa_badge_lang($string) {
 		return qa_lang($string);

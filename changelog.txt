@@ -1,0 +1,8 @@
+Q2A Badges Changelog
+
+####################################
+# 5.2.13 - 21 Jun 2024
+
+  - Moved "qa-badge-lang-default.php" file to "lang" folder.
+
+####################################

@@ -513,7 +513,12 @@
 												foreach($oids as $oid) {
 													$post = qa_db_select_with_pending(
 														qa_db_full_post_selectspec(null, $oid)
-													);								
+													);
+													
+													if (empty($post)) {
+														continue;
+													}
+													
 													$title=$post['title'];
 													
 													$anchor = '';

@@ -50,14 +50,14 @@
 					$useraccount = qa_db_single_select(qa_db_user_account_selectspec($handle, false));
 					$size = 70;
 					$defaultBlobId = qa_opt('avatar_default_blobid');
-					if (qa_opt('avatar_allow_gravatar') && ($useraccount['flags'] & QA_USER_FLAGS_SHOW_GRAVATAR)) {
+					if (qa_opt('avatar_allow_gravatar') && (@$useraccount['flags'] & QA_USER_FLAGS_SHOW_GRAVATAR)) {
 						$badgeAvatar = sprintf(
 							'%s://www.gravatar.com/avatar/%s?s=%s',
 							qa_is_https_probably() ? 'https' : 'http',
 							md5(strtolower(trim($useraccount['email']))),
 							$size
 						);
-					} elseif (qa_opt('avatar_allow_upload') && ($useraccount['flags'] & QA_USER_FLAGS_SHOW_AVATAR) && isset($useraccount['avatarblobid'])) {
+					} elseif (qa_opt('avatar_allow_upload') && (@$useraccount['flags'] & QA_USER_FLAGS_SHOW_AVATAR) && isset($useraccount['avatarblobid'])) {
 						$badgeAvatar = qa_path('image', array('qa_blobid' => $useraccount['avatarblobid'], 'qa_size' => $size), qa_path(''), QA_URL_FORMAT_PARAMS); 
 					} elseif ((qa_opt('avatar_allow_gravatar') || qa_opt('avatar_allow_upload')) && qa_opt('avatar_default_show') && !empty($defaultBlobId)) {
 						$badgeAvatar = qa_path('image', array('qa_blobid' => qa_opt('avatar_default_blobid'), 'qa_size' => $size), qa_path(''), QA_URL_FORMAT_PARAMS); 

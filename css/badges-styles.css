@@ -124,7 +124,7 @@
 .badge-user-tables {
     width: 100%;
 }
-td.badge-user-table {
+.badge-user-table {
     vertical-align: top;
 	padding: 0 5px;
 	width: 33.3%;
@@ -468,7 +468,7 @@ td.badge-user-table {
 
 
 @media (max-width: 630px){
-	td.badge-user-table {
+	.badge-user-table {
 		width: 100%;
 		display: block;
 		font-size: 13px;

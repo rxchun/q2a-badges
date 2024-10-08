@@ -3,6 +3,12 @@ Question2Answer Badges (Extended version)
 ==============================
 
 -----------
+5.2.3
+-----------
+
+- Small Patches
+
+-----------
 5.2.2
 -----------
 

@@ -2,6 +2,9 @@
 
 	class qa_html_theme_layer extends qa_html_theme_base {
 
+	// Patch Version
+	private $patchNumber = '?v=57';
+	
 	// init before start
 	public $badge_notice;
 	
@@ -52,7 +55,7 @@
 					true
 				);
 
-				if(!$user['uid']) {
+				if(empty($user)) {
 					qa_db_query_sub(
 						'INSERT INTO ^achievements (user_id, first_visit, oldest_consec_visit, longest_consec_visit, last_visit, total_days_visited, questions_read, posts_edited) VALUES (#, NOW(), NOW(), #, NOW(), #, #, #) ON DUPLICATE KEY UPDATE first_visit=NOW(), oldest_consec_visit=NOW(), longest_consec_visit=#, last_visit=NOW(), total_days_visited=#, questions_read=#, posts_edited=#',
 						$userid, 1, 1, 0, 0, 1, 1, 0, 0
@@ -122,25 +125,23 @@
 	
 		function head_custom() {
 			qa_html_theme_base::head_custom();
+			$patchNumber = $this->patchNumber;
 			
 			if(!qa_opt('badge_active'))
 				return;
 			
-			// Patch Version
-			$patchNumber = '54';
-
 			// only load Styles if enabled
 			if (qa_opt('badge_active')) {
 				$this->output('
-					<link rel="preload" as="style" href="'.QA_HTML_THEME_LAYER_URLTOROOT.'css/badges-styles.min.css?v='.$patchNumber.'" onload="this.onload=null;this.rel=\'stylesheet\'">
-					<noscript><link rel="stylesheet" href="'.QA_HTML_THEME_LAYER_URLTOROOT.'css/badges-styles.min.css?v='.$patchNumber.'"></noscript>
+					<link rel="preload" as="style" href="'.QA_HTML_THEME_LAYER_URLTOROOT.'css/badges-styles.min.css'.$patchNumber.'" onload="this.onload=null;this.rel=\'stylesheet\'">
+					<noscript><link rel="stylesheet" href="'.QA_HTML_THEME_LAYER_URLTOROOT.'css/badges-styles.min.css'.$patchNumber.'"></noscript>
 				');
 			}
 			// add RTL CSS file
 			if ($this->isRTL) {
 				$this->output('
-					<link rel="preload" as="style" href="'.QA_HTML_THEME_LAYER_URLTOROOT.'css/badges-rtl-style.css?v='.$patchNumber.'" onload="this.onload=null;this.rel=\'stylesheet\'">
-					<noscript><link rel="stylesheet" href="'.QA_HTML_THEME_LAYER_URLTOROOT.'css/badges-rtl-style.css?v='.$patchNumber.'"></noscript>
+					<link rel="preload" as="style" href="'.QA_HTML_THEME_LAYER_URLTOROOT.'css/badges-rtl-style.css'.$patchNumber.'" onload="this.onload=null;this.rel=\'stylesheet\'">
+					<noscript><link rel="stylesheet" href="'.QA_HTML_THEME_LAYER_URLTOROOT.'css/badges-rtl-style.css'.$patchNumber.'"></noscript>
 				');
 			}
 			

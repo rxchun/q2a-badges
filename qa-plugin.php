@@ -4,7 +4,7 @@
 	Plugin Name: Q2A Badges
 	Plugin URI: https://github.com/rxchun/q2a-badges
 	Plugin Description: This is a plugin for Question2Answer that provides basic badge functionality.
-	Plugin Version: 4.9
+	Plugin Version: 5.2.3
 	Plugin Date: 2017-10-14
 	Plugin License: GPLv3+
 	Plugin Minimum Question2Answer Version: 1.7

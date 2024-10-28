@@ -5,7 +5,7 @@ Question2Answer Badges (Extended version)
 -----------
 Description
 -----------
-This is a plugin for ** Question2Answer_ ** that provides basic badge functionality. 
+This is a plugin for Question2Answer_ that provides basic badge functionality. 
 
 .. _Question2Answer: https://question2answer.org/
 

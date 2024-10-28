@@ -5,7 +5,7 @@ Question2Answer Badges (Extended version)
 -----------
 Description
 -----------
-This is a plugin for **Question2Answer_** that provides basic badge functionality. 
+This is a plugin for ** Question2Answer_ ** that provides basic badge functionality. 
 
 .. _Question2Answer: https://question2answer.org/
 
@@ -53,7 +53,7 @@ Features
 Installation
 ------------
 
-#. Install Question2Answer_
+#. Install-Question2Answer_
 #. Get the source code for this plugin from github_, either using git_, or downloading directly:
 
    - To download using git, install git and then type 
@@ -63,7 +63,7 @@ Installation
 
 #. Go to **Admin -> Plugins** on your q2a install and select the '**Activate badges**' option, then '**Save Changes**'.
 
-.. _Question2Answer: http://www.question2answer.org/install.php
+.. _Install-Question2Answer: http://www.question2answer.org/install.php
 .. _git: http://git-scm.com/
 .. _github:
 .. _project page: https://github.com/NoahY/q2a-badges

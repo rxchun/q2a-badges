@@ -4,7 +4,7 @@
 	Plugin Name: Q2A Badges
 	Plugin URI: https://github.com/rxchun/q2a-badges
 	Plugin Description: This is a plugin for Question2Answer that provides basic badge functionality.
-	Plugin Version: 5.2.3
+	Plugin Version: 5.2.31
 	Plugin Date: 2017-10-14
 	Plugin License: GPLv3+
 	Plugin Minimum Question2Answer Version: 1.7
@@ -497,7 +497,7 @@
 								<tr>
 									<td class="badge-container">
 										<div class="badge-container-badge">
-											<span class="badge-'.$types.'" title="'.$desc.' ('.$typed.')">'.qa_html($name).'</span>&nbsp;<span onclick="jQuery(\'.badge-source-'.$slug.'\').toggleClass(\'q2a-show-badge-source\')" class="badge-count'.(is_array($oids)?' badge-count-link" title="'.qa_lang('badges/badge_count_click'):'').'">'.$count.'x</span>
+											<span class="badge-'.$types.'" title="'.$desc.' ('.$typed.')">'.qa_html($name).'</span>&nbsp;<span onclick="jQuery(\'.badge-source-'.$slug.'\').toggleClass(\'q2a-show-badge-source\')" class="badge-count'.(is_array($oids)?' badge-count-link noSelect" title="'.qa_lang('badges/badge_count_click'):'').'">'.$count.'x</span>
 										</div>';
 						
 						// source row(s) if any	

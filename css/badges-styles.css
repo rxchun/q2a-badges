@@ -201,11 +201,6 @@
     line-height: normal;
 }
 
-/* Remove wall posts in profile Badges Tab */
-.badges-tabs-content .qa-part-message-list {
-    display: none;
-}
-
 .badge-container-sources {
     position: fixed;
     top: 0;

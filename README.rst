@@ -3,59 +3,11 @@ Question2Answer Badges (Extended version)
 ==============================
 
 -----------
-5.2.3
+Description
 -----------
+This is a plugin for **Question2Answer_** that provides basic badge functionality. 
 
-- Small Patches
-
------------
-5.2.2
------------
-
-- Swapped JS algorithm to group badges by type, to a PHP solution.  
-  (To reduce Javascript implementation.)
-- JS code improvements.
-- Structural Work.
-
------------
-5.2
------------
-
-- New widget design
-- Added id tags to Badges Page to serve as link anchors.  
-  For example, now if you click in a widget badge, you get redirected and scrolled to that Badge's location in the Badges Page.
-- Some other Tweaks
-
------------
-5.0
------------
-
-- Badges Page: Badges source/Users who received, now is displayed in a Pop up, instead of a SlideDown toggle below the respective badge.
-- Profile Page: Now Badge title show the number of Badges you've earned for each type of badge. (Ex: Bronze 33, Silver 9, Gold 3)
-- Other fixes/arrangements
-`Screenshots`_.
-
------------
-4.9.2
------------
-
-- Badges counter added next to titles on profile pages. Example: Bronze(6), Silver(1), Gold(3)
-
------------
-4.9.1
------------
-
-- Send badge awarded events through the event system - by pvginkel.
-
------------
-4.9
------------
-
-- Badges styles fully redesigned.
-- Mobile ready styles.
-- Added algorithm to group Badges by "topics" on Badges page.
-- Added supported styles for Right-To-Left Themes.
-- Fixed badges not appearing next to the User on question lists and next to the Loggedin text on the navigation bar.
+.. _Question2Answer: https://question2answer.org/
 
 -----------
 Screenshots
@@ -77,11 +29,6 @@ Screenshots
 .. _Screenshot-5: https://raw.githubusercontent.com/rxchun/q2a-badges/9abcd1f77a2e450ecb9b3fc0755e9113966f210a/screenshots/badges-profile-page.png
 .. _Screenshot-6: https://raw.githubusercontent.com/rxchun/q2a-badges/9abcd1f77a2e450ecb9b3fc0755e9113966f210a/screenshots/badges-rtl-profile-page.png
 .. _Screenshot-7: https://raw.githubusercontent.com/rxchun/q2a-badges/9abcd1f77a2e450ecb9b3fc0755e9113966f210a/screenshots/badges-profile-page-mobile.png
-
------------
-Description
------------
-This is a plugin for **Question2Answer** that provides basic badge functionality. 
 
 --------
 Features

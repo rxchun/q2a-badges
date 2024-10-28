@@ -84,7 +84,7 @@
 				$isBronzeClosure = ($types == 'bronze' && $badgeCheckRepeated == '') ? '<div class="badgeGroup">' : '';
 				
 				
-				$qa_content['custom'.$c].= $isBronzeLoopClosure . $isBronzeOpen . '<table class="badge-entry-row entry-'.$types.'"><tr id="badge-anchor-'.$slug.'" class="badge-entry-badge"><td><span class="badge-'.$types.'" title="'.$typen.'">'.$name.'</span></td> <td><span class="badge-entry-desc">'.$desc.'</span></td>'.(isset($count[$slug])?' <td><span title="'.$count[$slug]['count'].' '.qa_lang('badges/awarded').'" class="badge-count-link" onclick="jQuery(\'#badge-users-'.$slug.'\').toggleClass(\'q2a-show-badge-source\')">'.$count[$slug]['count'].'x</span></td>':'<td><span class="badge-count">0</span></td>').'</tr>';
+				$qa_content['custom'.$c].= $isBronzeLoopClosure . $isBronzeOpen . '<table class="badge-entry-row entry-'.$types.'"><tr id="badge-anchor-'.$slug.'" class="badge-entry-badge"><td><span class="badge-'.$types.'" title="'.$typen.'">'.$name.'</span></td> <td><span class="badge-entry-desc">'.$desc.'</span></td>'.(isset($count[$slug])?' <td><span title="'.$count[$slug]['count'].' '.qa_lang('badges/awarded').'" class="badge-count-link noSelect" onclick="jQuery(\'#badge-users-'.$slug.'\').toggleClass(\'q2a-show-badge-source\')">'.$count[$slug]['count'].'x</span></td>':'<td><span class="badge-count">0</span></td>').'</tr>';
 				
 				// source users
 

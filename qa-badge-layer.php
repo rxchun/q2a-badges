@@ -3,7 +3,7 @@
 	class qa_html_theme_layer extends qa_html_theme_base {
 
 	// Patch Version
-	private $patchNumber = '?v=57';
+	private $patchNumber = '?v=59';
 	
 	// init before start
 	public $badge_notice;
@@ -54,7 +54,8 @@
 					),
 					true
 				);
-
+				
+				// if(!$user['uid'])
 				if(empty($user)) {
 					qa_db_query_sub(
 						'INSERT INTO ^achievements (user_id, first_visit, oldest_consec_visit, longest_consec_visit, last_visit, total_days_visited, questions_read, posts_edited) VALUES (#, NOW(), NOW(), #, NOW(), #, #, #) ON DUPLICATE KEY UPDATE first_visit=NOW(), oldest_consec_visit=NOW(), longest_consec_visit=#, last_visit=NOW(), total_days_visited=#, questions_read=#, posts_edited=#',
@@ -173,6 +174,21 @@
 							jQuery('.leftPanel, .qa-header').removeClass('zindex1');
 						});
 					});
+					
+					// Add Pop Up positioning for the triggered Badge Source Link
+					$(document).on('click', '.badge-count-link', (e) => {
+						if ($(window).width() <= 575) {
+							const closestBadgeContainer = $(e.currentTarget).parents('.badge-container').find('.badge-container-sources .badge-wrapper-sources');
+							const badgeTopDistance = ($(e.currentTarget).offset().top - closestBadgeContainer.height()) - (closestBadgeContainer.height() / 6);
+							
+							$(closestBadgeContainer).css({
+								top: badgeTopDistance
+							});
+						} else {
+							$('.badge-wrapper-sources').css('top', '');
+						}
+					});
+					
 				</script>
 				");
 			}

@@ -3,7 +3,7 @@
 /*
 	Q2A Badges
 	Plugin Author: NoahY
-	Extension Author: Chun (Gold Developer)
+	Extended by: Chun (Gold Developer)
 */
 
 	if (!defined('QA_VERSION')) { // don't allow this page to be requested directly from browser

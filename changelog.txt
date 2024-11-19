@@ -2,21 +2,25 @@
 Q2A Badges Changelog
 
 -----------
+5.2.32
+-----------
+
+  - 19 Nov 2024
+  - Structure fix for "Users List" page.
+
+-----------
 5.2.31
 -----------
 
-**28 Oct 2024**
-
+  - 28 Oct 2024
   - UX Adjustments.
 
 -----------
 5.2.3
 -----------
 
-**21 Jun 2024**
-
+  - 21 Jun 2024
   - Moved "qa-badge-lang-default.php" file to "lang" folder.
-
 
 -----------
 5.2.2

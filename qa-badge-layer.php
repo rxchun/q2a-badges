@@ -347,20 +347,14 @@
 			
 			}
 		}
-
-		function ranking($ranking) {
-			
-			if(@$ranking['type']=='users' && qa_opt('badge_show_users_badges')) {
-				foreach($ranking['items'] as $idx => $item) {
-					$handle = preg_replace('/ *<[^>]+> */', '', $item['label']);
-					
-					if(isset($ranking['items'][$idx]['score'])) $ranking['items'][$idx]['score'] .= '</span>'.qa_badge_plugin_user_widget($handle);
-				}
-			}
-			qa_html_theme_base::ranking($ranking);
+		
+		public function ranking_score($item, $class)
+		{
+			$this->ranking_cell($item['score'], $class . '-score');
+			$this->output(qa_badge_plugin_user_widget($item['raw']['handle']));
 		}
-
-	// badge popup notification
+		
+		// badge popup notification
 
 		function badge_notify() {
 			$userid = qa_get_logged_in_userid();

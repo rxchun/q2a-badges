@@ -1,21 +1,10 @@
 <?php
 
 /*
-	Plugin Name: Q2A Badges
-	Plugin URI: https://github.com/rxchun/q2a-badges
-	Plugin Description: This is a plugin for Question2Answer that provides basic badge functionality.
-	Plugin Version: 5.2.31
-	Plugin Date: 2017-10-14
-	Plugin License: GPLv3+
-	Plugin Minimum Question2Answer Version: 1.7
-	Plugin Update Check URI: https://raw.githubusercontent.com/rxchun/q2a-badges/master/metadata.json
-	
+	Q2A Badges
 	Plugin Author: NoahY
-	
 	Extension Author: Chun (Gold Developer)
-	Extension Author URI: https://twitter.com/TweetChun
 */
-
 
 	if (!defined('QA_VERSION')) { // don't allow this page to be requested directly from browser
 			header('Location: ../../');
@@ -37,7 +26,6 @@
 	function qa_badge_lang($string) {
 		return qa_lang($string);
 	}
-	
 	
 	function qa_get_badge_list() {
 		

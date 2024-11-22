@@ -8,7 +8,8 @@
     "author_uri": "https://rxchun.github.io/?ref=q2a-badges-github",
     "license": "GPLv3+",
     "update_uri": "https://raw.githubusercontent.com/rxchun/q2a-badges/master/metadata.json",
+    "max_q2a": "1.8.8",
     "min_q2a": "1.7",
     "min_php": "5.2",
-	"load_order": "after_db_init"
+    "load_order": "after_db_init"
 }

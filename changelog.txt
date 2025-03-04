@@ -2,6 +2,13 @@
 Q2A Badges Changelog
 
 -----------
+5.2.33
+-----------
+
+  - 04 Mar 2025
+  - Switched widget timestap to CORE lang.
+
+-----------
 5.2.32
 -----------
 

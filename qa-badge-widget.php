@@ -69,7 +69,9 @@
 					}
 					
 					// Badge Awarded Time
-					$awardedTime = qa_time_to_string(qa_opt('db_time') - $badge['datetime']) . ' ' . qa_lang('badges/widget_badge_earned_ago');
+					// $awardedTime = qa_time_to_string(qa_opt('db_time') - $badge['datetime']) . ' ' . qa_lang('badges/widget_badge_earned_ago');
+					$awardedTimeToString = qa_time_to_string(qa_opt('db_time') - $badge['datetime']);
+					$awardedTime = qa_lang_html_sub('main/x_ago', $awardedTimeToString);
 					$badgeHandle = str_replace(' ', '%20', $badge['handle']); // Fix white space. Code validation
 					
 					$imgSrcType = '';

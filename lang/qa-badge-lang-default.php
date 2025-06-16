@@ -1,6 +1,7 @@
 <?php
 	return array(
-
+		'badge_admin_activate'=>'Activate badges',
+		'active_badges'=>'Active Badges',
 		
 		'nice_question'=>'Nice Question',
 		'good_question'=>'Good Question',
@@ -21,7 +22,6 @@
 		'nice_comment'=>'Nice Comment',
 		'good_comment'=>'Good Comment',
 		'great_comment'=>'Great Comment',
-
 
 		'gifted'=>'Gifted',
 		'wise'=>'Wise',
@@ -63,11 +63,9 @@
 		'avid_reader'=>'Avid Reader',
 		'devoted_reader'=>'Devoted Reader',
 		
-
 		'dedicated'=>'Dedicated',
 		'devoted'=>'Devoted',
 		'zealous'=>'Zealous',
-
 
 		'visitor'=>'Visitor',
 		'trouper'=>'Trouper',
@@ -76,7 +74,6 @@
 		'regular'=>'Regular',
 		'old_timer'=>'Old-Timer',
 		'ancestor'=>'Ancestor',
-		
 		
 		'100_club'=>'100 Club',
 		'1000_club'=>'1,000 Club',
@@ -90,8 +87,6 @@
 		'profiler'=>'Autobiographer',
 		'avatar'=>'Photogenic',
 		
-	
-
 		'nice_question_desc'=>'Question received +# upvote',
 		'good_question_desc'=>'Question received +# upvote',
 		'great_question_desc'=>'Question received +# upvote',
@@ -124,7 +119,6 @@
 		'loved_desc'=>'Received # total ^upvote^upvotes',
 		'revered_desc'=>'Received # total ^upvote^upvotes',
 	
-
 		'asker_desc'=>'Asked # ^question^questions',
 		'questioner_desc'=>'Asked # ^question^questions',
 		'inquisitor_desc'=>'Asked # ^question^questions',
@@ -137,7 +131,6 @@
 		'commentator_desc'=>'Posted # ^comment^comments',
 		'annotator_desc'=>'Posted # ^comment^comments',
 		
-				
 		'voter_desc'=>'Voted # ^time^times',
 		'avid_voter_desc'=>'Voted # ^time^times',
 		'devoted_voter_desc'=>'Voted # ^time^times',
@@ -153,7 +146,6 @@
 		'reader_desc'=>'Read total of # ^question^questions',
 		'avid_reader_desc'=>'Read total of # ^question^questions',
 		'devoted_reader_desc'=>'Read total of # ^question^questions',
-		
 		
 		'dedicated_desc'=>'Visited every day for # consecutive ^day^days',
 		'devoted_desc'=>'Visited every day for # consecutive ^day^days',
@@ -178,9 +170,10 @@
 		'verified_desc'=>'Successfully verified email address',
 		'profiler_desc'=>'Filled out all profile fields',
 		'avatar_desc'=>'Uploaded an avatar image',
-
-
 		
+		'badge_admin_click_edit'=>'Click to edit badge name',
+		'badge_admin_select_all'=>'Select all/none',
+
 		'bronze'=>'Bronze',
 		'silver'=>'Silver',
 		'gold'=>'Gold',
@@ -191,11 +184,13 @@
 		
 		'badge_admin'=>'Badge Admin',
 		'badges'=>'Badges',
-		'badge_list_title'=>'Badges List',
+		'badge_list_title'=>'Badges',
 		
+		/* DEPRECATED
 		'badge_count_click'=>'Click to see source(s)',
+		*/
 		
-		'badge_list_pre'=>'The following is a list of all badges available on this site:',
+		'badge_list_pre'=>'Below is a list of all available badges and their descriptions:',
 		'badge_name'=>'Badge name',
 		'badge_description'=>'Badge description',
 		'awarded'=>'awarded',
@@ -208,40 +203,44 @@
 		'badge_notify_profile_pre'=>'Check out ',
 		'badge_notify_profile'=>'your profile',
 		
-		'badge_names_reset'=>'Badge names reset.',
-		'badge_values_reset'=>'Badge values reset.',
-		'badge_list_rebuilt'=>'Badge list rebuilt.',
-		'badge_admin_saved'=>'Options saved.',
+		'badge_trigger_notify'=>'Test Notify',
+		'badge_trigger_notify_desc'=>'show a sample notification box',
 		
-		'badge_admin_activate'=>'Activate badges',
-		'active_badges'=>'Active Badges',
+		'badge_reset_names'=>'Reset Names',
+		'badge_reset_names_desc'=>'Reset badge names as input above',
+		
+		'badge_reset_css'=>'Reset CSS',
+		'badge_reset_values'=>'Reset Values',
+		'badge_reset_values_desc'=>'Reset variable badge data as input above',
+		
+		'badge_cleanup_complete'=>'✅ Cleanup complete: All badges linked to non-existent users have been removed.',
+		'badge_cleanup_button'=>'Clean Up Invalid Badges',
+		'badge_cleanup_button_desc'=>'Remove badge entries that belong to users who no longer are in the system',
+		
 		'badge_award_button'=>'Recheck Badge Awarding',
 		'badge_award_button_desc'=>'Manually check for all deserved awards',
 		'badge_award_delete_desc'=>'Remove all badges from database first',
 		'badge_recreate'=>'Recreate Badges',
 		'badge_recreate_desc'=>'Recreate the badge database (for when changing the php code)',
 		
-		'badge_admin_click_edit'=>'Click to edit badge name',
-		'badge_admin_select_all'=>'Select all/none',
-
-		'badge_reset_css'=>'Reset CSS',
-		'badge_reset_values'=>'Reset Values',
-		'badge_reset_values_desc'=>'Reset variable badge data as input above',
-		'badge_reset_names'=>'Reset Names',
-		'badge_reset_names_desc'=>'Reset badge names as input above',
+		'badge_admin_saved'=>'Options saved.',
 		
+		'badge_names_reset'=>'Badge names reset.',
+		'badge_values_reset'=>'Badge values reset.',
+		'badge_list_rebuilt'=>'Badge list rebuilt.',
+		
+		/* DEPRECATED
 		'notify_time'=>'Notify Duration',
+		*/
 		'notify_time_desc'=>'Duration in seconds before hiding badge notification (0 = off)',
-		'badge_trigger_notify'=>'Test Notify',
-		'badge_trigger_notify_desc'=>'show a sample notification box',
-		'badge_admin_user_field'=>'Add badges to profile pages',
-		'badge_admin_user_field_no_tab'=>'Show badges on main profile field (not badges tab)',
-		'badge_show_source_posts'=>'Show list of source posts for each badge on user profile',
-		'badge_show_source_users'=>'Show list of rewarded users for each badge on badge page',
-		'badge_admin_user_widget'=>'Show badge widget beside points in user meta',
-		'badge_admin_user_widget_q_item'=>'Show badge widget beside points in question list',
-		'badge_admin_loggedin_widget'=>'Show badge widget beside points for logged in user',
-		'badge_show_users_badges'=>'Show badge widget beside user name on users list page',
+		'badge_admin_user_field'=>'Show badges widget on user profiles',
+		'badge_admin_user_field_no_tab'=>'Show the list of badges as a section on user profiles instead of a sub-navigation link or tab',
+		'badge_show_source_posts'=>'Display source posts for each badge on user profile',
+		'badge_show_source_users'=>'Show a list of users who earned each badge on the badges page',
+		'badge_admin_user_widget'=>'Show badges next to points in user metadata',
+		'badge_admin_user_widget_q_item'=>'Show badges widget next to points in question lists',
+		'badge_admin_loggedin_widget'=>'Show badges widget next to points for the logged-in users (header)',
+		'badge_show_users_badges'=>'Show badges widget next to usernames on the users list page',
 
 		'badge_email_notify'=>'Notify users of awarded badges by email',
 		'badge_email_notify_on'=>'Email notification on by default',
@@ -253,17 +252,22 @@
 		'badge_widget_title' => 'Recent Badges',
 		'widget_list_max' => 'Maximum number of recent badges in widget',
 		'widget_date_max' => 'Maximum age of badges in widget',
+		
+		'visit_profile' => 'Visit Profile',
 
 		'save_settings'=>'Save',
 		'save_settings_desc'=>'save above settings',
 		
-		/* New stuff */
+		/* Profile page */
 		'badge_of_type'=>'of type (Excluding repeated Badges)',
 		'badge_empty_source'=>'Deleted post',
 		'badge_anonymous_user'=>'No data',
 		'close_badge_source'=>'Close',
+		
+		/* widget */
 		'widget_badge_earned'=>'Earned a badge',
-		'widget_badge_earned_ago'=>'ago' // Example 3 months ago
+		'widget_badge_earned_ago'=>'ago', // Example 3 months ago
+		
 	);
 	
 

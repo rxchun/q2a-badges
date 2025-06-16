@@ -2,6 +2,10 @@
 Question2Answer Badges (Extended version)
 ==============================
 
+<a href="https://www.paypal.com/paypalme/chun128" target="_blank"/>
+<img src="https://i.ibb.co/Rz9rfk4/bmc-button.png" border="0" name="submit" alt="Donate with PayPal!"/>
+<a/>
+
 -----------
 Description
 -----------

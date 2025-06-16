@@ -1,6 +1,6 @@
 /*
-	Plugin Name: Q2A Badges
-	RTL Styles
+    Plugin Name: Q2A Badges
+    RTL Styles
 */
 
 .badge-notify {
@@ -12,7 +12,7 @@
     border-bottom-left-radius: 10px;
     border-top-right-radius: 30px;
     border-bottom-right-radius: 30px;
-	text-align: right;
+    text-align: right;
 }
 .badge-bronze:before, .badge-silver:before, .badge-gold:before {
     margin-right: 0;
@@ -30,11 +30,11 @@
 /* Badge Widget */
 .qa-badges-widget h2 span.svg-icon {
     margin-right: initial;
-	margin-left: 0.5rem;
+    margin-left: 0.5rem;
 }
 
 @media (max-width: 630px){
-	.badge-notify {
-		padding: 1rem 1rem 1rem 0rem;
-	}
+    .badge-notify {
+        padding: 1rem 1rem 1rem 0rem;
+    }
 }

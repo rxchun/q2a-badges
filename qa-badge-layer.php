@@ -3,7 +3,7 @@
 class qa_html_theme_layer extends qa_html_theme_base {
 
 // Patch Version
-private $patchNumber = '?v=105';
+private $patchNumber = '?v=106';
 
 // init before start
 public $badge_notice;

@@ -483,7 +483,7 @@ function qa_badge_plugin_user_form($userid) {
 				$var = qa_opt('badge_' . $slug . '_var');
 				$desc = qa_badge_desc_replace($slug, $var, false);
 				
-				$fetchUrl = qa_path('qa-plugin/' . basename(__DIR__) . '/badges-endpoint/render-profile-badges.php');
+				$fetchUrl = qa_path('qa-plugin/' . basename(__DIR__));
 				
 				$dataAttributes = 'class="badge-count"';
 					

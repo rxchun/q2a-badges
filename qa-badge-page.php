@@ -122,7 +122,7 @@ class qa_badge_page {
 					if (isset($badgeAwardCounts[$slug])) {
 						
 						$countForBadge = $badgeAwardCounts[$slug]['count'];
-						$fetchUrl = qa_path('qa-plugin/' . basename(__DIR__) . '/badges-endpoint/render-page-badges.php');
+						$fetchUrl = qa_path('qa-plugin/' . basename(__DIR__));
 						
 						// If showing source is not enabled
 						$dataAttributes = 'class="badge-count"';

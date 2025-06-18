@@ -145,8 +145,14 @@ document.addEventListener('DOMContentLoaded', () => {
 			container.dataset.loading = 'false';
 			return;
 		}
-
-		const fetchUrl = `${fetchUrlBase}?slug=${encodeURIComponent(badgeSlug)}&userid=${userId}&offset=${offset}&limit=${limit}`;
+		
+		let fetchFrom = `${fetchUrlBase}/badges-endpoint/render-page-badges.php`;
+		
+		if (document.body.classList.contains('qa-template-user')) {
+			fetchFrom = `${fetchUrlBase}/badges-endpoint/render-profile-badges.php`;
+		}
+		
+		const fetchUrl = `${fetchFrom}?slug=${encodeURIComponent(badgeSlug)}&userid=${userId}&offset=${offset}&limit=${limit}`;
 		// console.log(fetchUrl); // Uncomment for debug
 		
 		if (!badgeUserContentCache.has(badgeSlug))

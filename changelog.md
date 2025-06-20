@@ -7,11 +7,18 @@
 ## [5.2.35] - 2025-06-16
 
 ### Smarter database requests
-Instead of sending separate requests for each user one by one, we now group them together into a single query batch fetch to work faster and smoother behind the scenes. This reduces the overhead of repeated network/database round trips.  
+Instead of sending separate requests for each user one by one, they're now grouped into a single batch fetch. This reduces the overhead of repeated network/database round trips.  
 
 ### Lazy loading for badges
-The list of users who earned badges now loads only when you scroll, making the page quicker and easier to navigate.  
-(This one has been in the to-do list for a while now, as I've noticed larger websites suffering from this)
+This one has been in the to-do list for a while now, as I've noticed websites with large amounts of badges suffering from this.
+
+Badges page:
+
+The list of users who earned badges now only loads when clicked, and as you scroll down the pop-up, more content is loaded dynamically, making the page faster and easier to navigate.
+
+After closing a pop-up, the list is destroyed to minimize nodes, while maintaining good performance.
+
+Once a list of badges is fully loaded, meaning the scroll has reached the end, it will save the list temporarily in memory, so it wont fetch the same list again, in case you reopen it for that page visit.
 
 ### Better code organization
 Organized files and created a “utils” file that holds common functions used throughout the site, making future updates simpler and more modular.

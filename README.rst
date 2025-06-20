@@ -2,7 +2,11 @@
 Question2Answer Badges (Extended version)
 ==============================
 
-Changelog https://github.com/rxchun/q2a-badges/blob/master/changelog.md
+Changelog: changelog.md_
+Live preview: Q2A Badges Live_
+
+.. _changelog.md: changelog.md
+.. _Q2A Badges Live: https://polaris.unaux.com/badges
 
 .. image:: https://i.ibb.co/Rz9rfk4/bmc-button.png
    :target: https://www.paypal.com/paypalme/chun128

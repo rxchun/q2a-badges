@@ -2,8 +2,8 @@
 Question2Answer Badges (Extended version)
 ==============================
 
-Changelog: changelog.md_
-Live preview: Q2A Badges Live_
+Changelog: changelog.md_  
+Live preview: `Q2A Badges Live`_
 
 .. _changelog.md: changelog.md
 .. _Q2A Badges Live: https://polaris.unaux.com/badges

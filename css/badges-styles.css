@@ -278,10 +278,10 @@
 .badge-sources-wrapper {
     display: flex;
     flex-direction: column;
-    height: 50vh;
+    height: 52vh;
     margin: 0;
     padding: .5rem;
-    max-height: 300px;
+    max-height: 340px;
     overflow-y: auto;
     overflow-x: hidden;
 }

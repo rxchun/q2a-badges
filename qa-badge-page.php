@@ -128,12 +128,12 @@ class qa_badge_page {
 						$dataAttributes = 'class="badge-count"';
 						
 						if (qa_opt('badge_show_source_users') && isset($badgeAwardCounts[$slug])) {
+							// data-popup-title="'.qa_lang('badges/badge_widget_title').'"
 							$dataAttributes = '
 								class="badge-count-link noSelect" 
 								data-slug="'.qa_html($slug).'" 
 								data-type-slug="'.qa_html($typeSlug).'" 
 								data-name="'.qa_html($name).'" 
-								data-popup-title="'.qa_lang('badges/badge_widget_title').'"
 								data-desc="'.htmlspecialchars($desc, ENT_QUOTES).'" 
 								data-fetch-url="'.$fetchUrl.'"
 							';

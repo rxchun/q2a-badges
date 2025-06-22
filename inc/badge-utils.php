@@ -95,26 +95,30 @@ function get_user_avatar($handle, $size) {
     }
 
     $pluginDirectory = basename(dirname(__DIR__));
-    return qa_path('') . qa_opt('site_url') . "/qa-plugin/{$pluginDirectory}/images/default-avatar-35.png";
+    return qa_opt('site_url') . "qa-plugin/{$pluginDirectory}/images/default-avatar-".$size.".svg";
 }
 
 /**
  * Generates HTML for a user's avatar, with lazy loading if Polaris theme is active.
  *
  * @param string $handle The user's handle.
- * @param string $avatar_url The avatar URL.
+ * @param string $avatarUrl The avatar URL.
  * @return string HTML block.
  */
-function generate_avatar_html($handle, $avatar_url) {
+function generate_avatar_html($handle, $avatarUrl, $elemImgSize) {
     $lazyImgSrc = qa_opt('site_theme') === 'Polaris'
         ? 'data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs='
-        : $avatar_url;
+        : $avatarUrl;
+    
+    $avatarImgClass = (strpos($avatarUrl, 'default-avatar') !== false) ? ' qa-avatar-image qa-lazy-img no-avatar' : ' qa-avatar-image qa-lazy-img';
+    
+    $profileUrl = qa_path_html('user/' . $handle);
+    $escapedHandle = qa_html($handle);
 
-    return '
-        <div class="bliu-avatar flex">
-            <a class="qa-avatar-link" href="' . qa_path_html('user/' . $handle) . '">
-                <img class="qa-avatar-image qa-lazy-img" width="44" height="44"
-                    src="' . $lazyImgSrc . '" data-src="' . $avatar_url . '" alt="' . qa_html($handle) . '">
-            </a>
-        </div>';
+    return <<<HTML
+        <a class="qa-avatar-link" href="{$profileUrl}">
+            <img class="{$avatarImgClass}" width="{$elemImgSize}" height="{$elemImgSize}"
+                src="{$lazyImgSrc}" data-src="{$avatarUrl}" alt="{$escapedHandle}">
+        </a>
+HTML;
 }

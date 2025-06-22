@@ -4,6 +4,35 @@
 
 # Q2A Badges Changelog
 
+## [5.2.37] - 2025-06-21
+
+### Widget Batch Fetching + User Account Data Caching
+
+ 1. Collect all user handles into an array while looping through badges.
+ 2. Batch fetch all user accounts at once via `fetch_user_accounts()`
+ 3. Cache user data in `$userAccounts` to avoid repeated database calls.
+
+### Badge Details Caching
+
+ - Added `$badgeCache` to cache badge details by slug.
+ - Avoid repeated option/database lookups for badges already processed.
+
+### Other
+
+ - Refactor: Moved `badge-utils.php` to `inc` folder for better organization.
+ - Reuse functions from `badge-utils.php` for the widget, instead of redeclaring them:
+   - `get_user_avatar($handle, $size)`
+   - `generate_avatar_html($handle, $avatarUrl, $size)`
+ - Updated default user avatar to a smaller `.svg` image.
+ 
+---
+
+## [5.2.36] - 2025-06-20
+
+ - Abstract fetch endpoint away from HTML.
+
+---
+
 ## [5.2.35] - 2025-06-16
 
 ### Smarter database requests

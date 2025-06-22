@@ -15,7 +15,7 @@ require_once QA_INCLUDE_DIR.'db/users.php';
 require_once QA_INCLUDE_DIR.'db/selects.php';
 
 // Plugin utility functions
-require_once 'badge-utils.php';
+require_once '../inc/badge-utils.php';
 
 // -----------------------------------------------------------------------------
 // Input validation
@@ -102,20 +102,25 @@ foreach ($paginated_users as $uid => $ucount) {
     $handle = isset($handle_map[$uid]) ? $handle_map[$uid] : null;
     if (!$handle) continue;
 
-    $avatar_url  = get_user_avatar($handle, 88);
-    $avatarHTML  = generate_avatar_html($handle, $avatar_url);
+    $avatar_url  = get_user_avatar($handle, 88); // Use util function
+    $avatarHTML  = generate_avatar_html($handle, $avatar_url, 44); // Use util function
     $profile_url = qa_path_html('user/' . $handle);
+    $handle_html = qa_html($handle);
+    $info        = ($ucount > 1) ? ' x' . $ucount : '';
+    $visit_label = qa_lang('badges/visit_profile');
 
-    echo '
+    echo <<<HTML
         <li class="badge-list-item flex flex-row">
-            ' . $avatarHTML . '
+            <div class="bliu-avatar flex">
+                {$avatarHTML}
+            </div>
             <div class="bliu-container flex">
-                <a class="bliu-link" href="' . $profile_url . '">' . qa_html($handle) . '</a>
-                <span class="bliu-info">' . ($ucount > 1 ? ' x' . $ucount : '') . '</span>
+                <a class="bliu-link" href="{$profile_url}">{$handle_html}</a>
+                <span class="bliu-info">{$info}</span>
             </div>
             <div class="bliu-more flex">
-                <a class="bliu-button" href="' . $profile_url . '">' . qa_lang('badges/visit_profile') . '</a>
+                <a class="bliu-button" href="{$profile_url}">{$visit_label}</a>
             </div>
         </li>
-    ';
+HTML;
 }

@@ -14,7 +14,7 @@ require_once QA_INCLUDE_DIR.'app/posts.php';
 require_once QA_INCLUDE_DIR.'app/users.php';
 
 // Plugin utility functions
-require_once 'badge-utils.php';
+require_once '../inc/badge-utils.php';
 
 // -----------------------------------------------------------------------------
 // Input validation & badge settings check

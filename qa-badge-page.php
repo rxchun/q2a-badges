@@ -33,7 +33,7 @@ class qa_badge_page {
 	function process_request($request)
 	{
 		// Include required utility functions
-		require_once $this->directory . 'badges-endpoint/badge-utils.php';
+		require_once $this->directory . 'inc/badge-utils.php';
 
 		// Prepare the main content array
 		$qa_content = qa_content_prepare();

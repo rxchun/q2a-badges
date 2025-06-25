@@ -218,6 +218,9 @@ class qa_badge_widget {
 			? 'data-src="'.$avatarUrl.'" src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs="'
 			: 'src="'.$avatarUrl.'"';
 
+		$siteUrl = qa_opt('site_url');
+		$badgeUrl = $siteUrl . 'badges#badge-anchor-' . $badgeSlug;
+
 		return <<<HTML
 		<div class="badge-awarded">
 			<div class="badge-awarded-header">
@@ -239,7 +242,7 @@ class qa_badge_widget {
 					<span class="wibawhat-timestamp" title="{$awardedTime['full_date']}">{$awardedTime['time_ago']}</span>
 				</span>
 				<span class="wibabadge">
-					<a href="badges#badge-anchor-{$badgeSlug}" title="{$badgeName} - {$badgeDesc} ({$badgeType})">
+					<a href="{$badgeUrl}" title="{$badgeName} - {$badgeDesc} ({$badgeType})">
 						<span class="badge-{$badgeType}">{$badgeName}</span>
 					</a>
 				</span>

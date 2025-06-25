@@ -4,6 +4,12 @@
 
 # Q2A Badges Changelog
 
+## [5.2.38] - 2025-06-25
+
+ - Widget - badge url fix.
+
+---
+
 ## [5.2.37] - 2025-06-21
 
 ### Widget Batch Fetching + User Account Data Caching

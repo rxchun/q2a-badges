@@ -217,7 +217,9 @@ class qa_badge_widget {
 		$imgSrc = qa_opt('site_theme') == 'Polaris'
 			? 'data-src="'.$avatarUrl.'" src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs="'
 			: 'src="'.$avatarUrl.'"';
-
+		
+		$profileUrl = qa_path_html('user/' . $handle);
+		
 		$siteUrl = qa_opt('site_url');
 		$badgeUrl = $siteUrl . 'badges#badge-anchor-' . $badgeSlug;
 
@@ -229,7 +231,7 @@ class qa_badge_widget {
 				</div>
 				<div class="badge-awarded-info">
 					<span class="wibawho-wrapper">
-						<a class="wibawho" href="user/{$handle}">{$handle}</a>
+						<a class="wibawho" href="{$profileUrl}">{$handle}</a>
 					</span>
 					<span class="wibawhat">
 						<span class="wibawhat-text">{$langEarnedBadge}</span>

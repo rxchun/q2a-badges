@@ -6,7 +6,7 @@
 
 ## [5.2.38] - 2025-06-25
 
- - Widget - badge url fix.
+ - Widget - Url fix.
 
 ---
 

@@ -10,7 +10,8 @@ qa_register_plugin_module('event', 'qa-badge-check.php','badge_check','Badge Che
 qa_register_plugin_module('module', 'qa-badge-admin.php', 'qa_badge_admin', 'Badge Admin');
 qa_register_plugin_module('page', 'qa-badge-page.php', 'qa_badge_page', 'Badges');
 qa_register_plugin_module('widget', 'qa-badge-widget.php', 'qa_badge_widget', 'Recent Badge Widget');
-qa_register_plugin_layer('qa-badge-layer.php', 'Badge Notification Layer');	
+qa_register_plugin_layer('qa-badge-layer.php', 'Badge Notification Layer');
+
 qa_register_plugin_phrases('lang/qa-badge-lang-*.php', 'badges');
 
 function qa_badge_lang($string) {
@@ -385,10 +386,19 @@ if(!function_exists('qa_getHandleFromId')) {
 
 // layout
 	
-function qa_badge_plugin_user_widget($handle) {
-	
-	$userids = qa_handles_to_userids(array($handle));
-	$userid = $userids[$handle];
+function qa_badge_plugin_user_widget($user) {
+	$userid = null;
+
+	if (is_int($user) || ctype_digit((string)$user)) {
+		$userid = (int)$user;
+	} elseif (is_string($user) && $user !== '') {
+		$userids = qa_handles_to_userids(array($user));
+		if (isset($userids[$user])) {
+			$userid = (int)$userids[$user];
+		}
+	}
+
+	if (!$userid) return '';
 
 	// displays small badge widget, suitable for meta
 	
@@ -399,10 +409,12 @@ function qa_badge_plugin_user_widget($handle) {
 		)
 	);
 
-	if(count($result) == 0) return;
+	if(count($result) == 0) return '';
 	
 	$badges = qa_get_badge_list();
+	$bcount = array();
 	foreach($result as $slug) {
+		if (!isset($badges[$slug])) continue;
 		$bcount[$badges[$slug]['type']] = isset($bcount[$badges[$slug]['type']])?$bcount[$badges[$slug]['type']]+1:1; 
 	}
 	$output='<span class="qa-badge-medals-widget">';
@@ -448,6 +460,7 @@ function qa_badge_plugin_user_form($userid) {
 		
 		foreach($result as $info) {
 			$slug = $info['slug'];
+			if (!isset($bin[$slug])) continue;
 			$type = $bin[$slug]['type'];
 			if(isset($badges[$type][$slug])) $badges[$type][$slug]['count']++;
 			else $badges[$type][$slug]['count'] = 1;

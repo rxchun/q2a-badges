@@ -9,7 +9,6 @@ private $patchNumber = '?v=121';
 public $badge_notice;
 
 	function doctype() {
-			
 		qa_html_theme_base::doctype();
 		if (qa_opt('badge_active')) {
 			
@@ -145,7 +144,11 @@ public $badge_notice;
 		}
 		
 		if (qa_opt('badge_active') && $this->template != 'admin') {
-			$this->badge_notify();
+			try {
+				$this->badge_notify();
+			} catch (\Throwable $e) {
+				error_log('badge_notify error: ' . $e->getMessage() . ' in ' . $e->getFile() . ':' . $e->getLine());
+			}
 		}
 
 		// Added fix to remove empty <style> in <head>
@@ -196,11 +199,16 @@ public $badge_notice;
 
 	function post_meta_who($post, $class)
 	{
+		if (qa_opt('site_theme') === 'Polaris') {
+			qa_html_theme_base::post_meta_who($post, $class);
+			return;
+		}
+
 		if (empty($post['who']['level']) && @$post['who'] && @$post['who']['data'] && qa_opt('badge_active') && (bool)qa_opt('badge_admin_user_widget') && ($class != 'qa-q-item' || qa_opt('badge_admin_user_widget_q_item')) ) {
 			$post['who']['suffix'] = (@$post['who']['suffix']).' <span class="qa-badge-medals-widget">'.qa_lang_html('badges/badge_anonymous_user').'</span>'; // No data
 		} else if (@$post['who'] && @$post['who']['data'] && qa_opt('badge_active') && (bool)qa_opt('badge_admin_user_widget') && ($class != 'qa-q-item' || qa_opt('badge_admin_user_widget_q_item')) ) {
-			$handle = preg_replace('/ *<[^>]+> */', '',$post['who']['data']);
-			$post['who']['suffix'] = (@$post['who']['suffix']).' '.qa_badge_plugin_user_widget($handle);
+			$user = isset($post['raw']['userid']) ? (int)$post['raw']['userid'] : preg_replace('/ *<[^>]+> */', '',$post['who']['data']);
+			$post['who']['suffix'] = (@$post['who']['suffix']).' '.qa_badge_plugin_user_widget($user);
 		}
 		
 		qa_html_theme_base::post_meta_who($post, $class);
@@ -208,12 +216,30 @@ public $badge_notice;
 
 	function logged_in()
 	{
-		if (qa_opt('badge_active') && (bool)qa_opt('badge_admin_loggedin_widget') && @$this->content['loggedin']['data'] != null) {
-			$handle = preg_replace('/ *<[^>]+> */', '',$this->content['loggedin']['data']);
-			$this->content['loggedin']['data'] = $this->content['loggedin']['data'].' '.qa_badge_plugin_user_widget($handle);
+		if (qa_opt('site_theme') === 'Polaris') {
+			qa_html_theme_base::logged_in();
+			return;
 		}
-		
+
+		$widget = '';
+
+		if (qa_opt('badge_active') && (bool)qa_opt('badge_admin_loggedin_widget') && !empty($this->content['loggedin']['data'])) {
+			$userid = qa_get_logged_in_userid();
+			if ($userid) {
+				$widget = qa_badge_plugin_user_widget((int)$userid);
+
+				if ($widget && (qa_opt('site_theme') !== 'Polaris')) {
+					$this->content['loggedin']['data'] .= ' ' . $widget;
+					$widget = '';
+				}
+			}
+		}
+
 		qa_html_theme_base::logged_in();
+
+		if ($widget) {
+			$this->output(' ' . $widget);
+		}
 	}
 	
 	function q_view_main($q_view) {
@@ -221,7 +247,11 @@ public $badge_notice;
 
 	// badge check on view update
 
-		if (qa_opt('badge_active') && isset($this->content['inc_views_postid'])) {
+		if (
+			qa_opt('badge_active') &&
+			isset($this->content['inc_views_postid']) &&
+			isset($q_view['raw']['userid'], $q_view['raw']['views'])
+		) {
 
 			$uid = $q_view['raw']['userid'];
 
@@ -266,7 +296,15 @@ public $badge_notice;
 	public function ranking_score($item, $class)
 	{
 		$this->ranking_cell($item['score'], $class . '-score');
-		$this->output(qa_badge_plugin_user_widget($item['raw']['handle']));
+		if (qa_opt('site_theme') === 'Polaris') {
+			return;
+		}
+
+		if (isset($item['raw']['userid'])) {
+			$this->output(qa_badge_plugin_user_widget((int)$item['raw']['userid']));
+		} elseif (isset($item['raw']['handle'])) {
+			$this->output(qa_badge_plugin_user_widget($item['raw']['handle']));
+		}
 	}
 	
 	public function body_hidden()
